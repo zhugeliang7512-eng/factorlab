@@ -1,0 +1,119 @@
+(() => {
+  'use strict';
+  const E=window.FACTORLAB_CARDS,D=window.FACTORLAB_CARD_DATA,main=document.querySelector('#main');
+  const KEY='factorlab-card-save-v1';
+  const names=['半导体','工业自动化','先进材料','清洁能源','AI 基础设施','Cash'];
+  const symbols=['chip','robot','hex','sun','network','coins'];
+  const colors=['#83b9db','#9abea6','#b3a2cc','#a9c88b','#85c9c2','#e7bd76'];
+  const strategyLabels={guardian:'稳健型',navigator:'平衡型',challenger:'进取型'};
+  const icons={
+    chip:'<rect x="7" y="7" width="18" height="18" rx="3"/><rect x="12" y="12" width="8" height="8" rx="1"/><path d="M11 3v4m10-4v4M11 25v4m10-4v4M3 11h4m-4 10h4m18-10h4m-4 10h4"/>',
+    robot:'<rect x="5" y="10" width="22" height="16" rx="5"/><path d="M16 10V5m-3 16h6M1 16v5m30-5v5"/><circle cx="16" cy="4" r="1"/><circle cx="11" cy="16" r="1"/><circle cx="21" cy="16" r="1"/>',
+    hex:'<path d="m16 3 12 7v13l-12 7L4 23V10Zm0 0v13m-12-6 12 6 12-6M16 16v14"/>',
+    sun:'<circle cx="16" cy="16" r="6"/><path d="M16 2v4m0 20v4M2 16h4m20 0h4M6 6l3 3m14 14 3 3M6 26l3-3M23 9l3-3"/>',
+    network:'<circle cx="16" cy="16" r="4"/><circle cx="5" cy="6" r="3"/><circle cx="27" cy="6" r="3"/><circle cx="5" cy="26" r="3"/><circle cx="27" cy="26" r="3"/><path d="m7 8 6 5m6 6 6 5m-6-11 6-5M7 24l6-5"/>',
+    coins:'<ellipse cx="16" cy="8" rx="11" ry="5"/><path d="M5 8v8c0 7 22 7 22 0V8M5 16v8c0 7 22 7 22 0v-8"/>',
+    bolt:'<path d="m19 2-14 18h10l-2 10 14-18H17Z"/>',
+    scan:'<path d="M11 3H4v7m17-7h7v7M4 22v7h7m17-7v7h-7M9 16h14"/><circle cx="16" cy="16" r="7"/>',
+    sliders:'<path d="M8 3v10m0 6v10M24 3v4m0 6v16M3 16h10M19 10h10"/><circle cx="8" cy="16" r="3"/><circle cx="24" cy="10" r="3"/>',
+    up:'<path d="M5 24 15 14l6 4 7-11M20 7h8v8"/>',
+    down:'<path d="M5 8 15 18l6-4 7 11M20 25h8v-8"/>',
+    rotate:'<path d="M5 11h22l-6-6m6 16H5l6 6M5 11l6 6m-6 4 6-6"/>',
+    spread:'<circle cx="16" cy="7" r="4"/><path d="M16 11v7M5 25v-7h22v7m-11-7v7"/>',
+    shield:'<path d="m16 3 11 5v9c0 6-7 10-11 12C12 27 5 23 5 17V8Z"/><path d="m10 16 4 4 8-9"/>',
+    eye:'<path d="M2 16C8 4 24 4 30 16 24 28 8 28 2 16Z"/><circle cx="16" cy="16" r="4"/>'
+  };
+  const icon=(name,cls='')=>`<svg class="icon ${cls}" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]||icons.hex}</svg>`;
+  const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const pct=(v,d=1)=>`${(v*100).toFixed(d)}%`, signed=(v,d=2)=>`${v>=0?'+':''}${(v*100).toFixed(d)}`;
+  const money=v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const freshSeed=()=>crypto.getRandomValues(new Uint32Array(1))[0];
+  const requested=Number(new URLSearchParams(location.search).get('seed'));
+  let state=E.initial(new URLSearchParams(location.search).has('seed')&&Number.isInteger(requested)&&requested>=0?requested:freshSeed());
+  let selected=null,from=null,canSave=true,notice='',toastTimer;
+  try{const raw=localStorage.getItem(KEY);if(raw){const restored=E.restore(raw,D);if(restored)state=restored;else{canSave=false;notice='原存档无法读取，已保留。本局临时运行，刷新会丢失进度。';}}}catch{canSave=false;notice='浏览器存储不可用。本局可以玩，刷新会丢失进度。';}
+  function save(){if(canSave)try{localStorage.setItem(KEY,E.serialize(state));}catch{canSave=false;notice='浏览器未能保存。本局可以继续，刷新可能丢失进度。';}}
+  function toast(text){const el=document.querySelector('#toast');el.textContent=text;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
+  function dispatch(a){
+    const previous=state,n=E.reduce(state,a,D);
+    if(n===state){toast('当前不能这样出牌，请检查行动力与可用持仓。');return false;}
+    state=n;selected=null;from=null;save();render();
+    if(previous.phase!==state.phase)main.querySelector('h1')?.focus();
+    return true;
+  }
+  function timeline(){return `<div class="journey" aria-label="六轮旅程">${Array.from({length:6},(_,i)=>`<span class="${i+1<state.round?'done':i+1===state.round?'current':''}" aria-label="第 ${i+1} 轮${[2,4].includes(i+1)?'，结算后升级':''}">${i+1<state.round?'✓':i+1}${[2,4].includes(i+1)?'<i>◇</i>':''}</span>`).join('')}</div>`;}
+  function ring(weights,size=58){let offset=0;const circles=weights.map((w,i)=>{const out=`<circle cx="32" cy="32" r="25" fill="none" stroke="${colors[i]}" stroke-width="8" pathLength="100" stroke-dasharray="${w*100} ${100-w*100}" stroke-dashoffset="${-offset}"/>`;offset+=w*100;return out;});return `<svg class="ring" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true">${circles.join('')}</svg>`;}
+  function energy(){return `<div id="energy" class="energy" aria-label="剩余行动力">${icon('bolt')}<strong>${state.energy}<small> / ${E.maxEnergy(state)}</small></strong><span class="energy-gems">${Array.from({length:E.maxEnergy(state)},(_,i)=>`<i class="${i<state.energy?'lit':''}"></i>`).join('')}</span></div>`;}
+  function heading(){return `<div class="round-heading"><div><p class="eyebrow">ROUND ${String(state.round).padStart(2,'0')} <span>/ 06</span></p><h1 tabindex="-1">${escape(D.events[state.round-1].title)}</h1></div>${timeline()}<div class="capital"><span>组合净值</span><strong>${money(state.nav)}</strong><small class="${state.nav>=100000?'positive':'negative'}">${signed(state.nav/100000-1)}% <span>本局累计</span></small></div></div>`;}
+  function renderChoose(){return `<section class="welcome"><div class="welcome-copy"><p class="eyebrow">THE DECISION TABLE</p><h1 tabindex="-1">把判断，<br>打成组合。</h1><p class="intro">六轮市场，五张手牌。<br>每一次出手，都要留有余地。</p><div class="welcome-rules"><span>${icon('bolt')}3 点行动力</span><span>${icon('rotate')}组合出牌</span><span>${icon('sliders')}两次升级</span></div></div><div class="welcome-art" aria-hidden="true"><div class="table-orbit"></div><div class="sample-card sample-back">${icon('scan')}<span>深入研究</span></div><div class="sample-card sample-front">${icon('network')}<span>试探建仓</span><b>+3<small> pp</small></b><div>Cash → 板块</div></div><div class="sample-card sample-side">${icon('shield')}<span>留出缓冲</span></div><div class="orbit-label">你的组合，你的取舍</div></div></section><section class="strategy-section"><div class="section-heading"><h2>选择起手组合</h2><p>只决定初始持仓，之后由你出牌。</p></div><div class="strategies">${Object.entries(D.strategies).map(([key,s])=>`<button class="strategy" data-start="${key}" aria-label="选择${strategyLabels[key]}"><div>${icon(key==='guardian'?'shield':key==='navigator'?'rotate':'up')}<span>${strategyLabels[key]}<small>${s.name}</small></span><b>↗</b></div><div class="mini-allocation">${s.weights.map((w,i)=>`<i style="width:${w*100}%;background:${colors[i]}"></i>`).join('')}</div><p>Cash <strong>${pct(s.weights[5],0)}</strong><span>AI ${pct(s.weights[4],0)}</span></p></button>`).join('')}</div></section>`;}
+  function chart(history){
+    const visible=history.filter(v=>v!==null), lo=Math.min(...visible),hi=Math.max(...visible),pad=Math.max((hi-lo)*.18,1);
+    const y=v=>110-(v-lo+pad)/(hi-lo+2*pad)*92, x=i=>22+i*40;
+    const points=history.map((v,i)=>v===null?null:`${x(i)},${y(v)}`).filter(Boolean);
+    const detailed=visible.length===7;
+    return `<svg class="history-chart" viewBox="0 0 284 140" role="img" aria-label="AI 历史指数，${visible.length} 个可见观测，首尾 ${visible[0].toFixed(2)} 至 ${visible.at(-1).toFixed(2)}"><path d="M22 35H262M22 73H262M22 111H262" class="chart-grid"/><polyline points="${points.join(' ')}" fill="none" stroke="var(--mint)" stroke-width="2" ${detailed?'':'stroke-dasharray="4 5"'}/>${history.map((v,i)=>v===null?`<circle cx="${x(i)}" cy="120" r="2" fill="var(--muted)"/>`:`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="var(--mint)"/><text x="${x(i)}" y="${y(v)-10}" text-anchor="middle">${v.toFixed(1)}</text>`).join('')}<text x="22" y="139">6 个月前</text><text x="262" y="139" text-anchor="end">决策前</text></svg>`;
+  }
+  function researchPanel(){
+    const v=E.view(state,D),count=v.history.filter(x=>x!==null).length;
+    return `<aside class="research-panel"><div class="panel-heading"><span>${icon('scan')}AI 历史信号</span><b class="history-count">${count}<small> / 7</small></b></div><div class="signal-stat"><strong class="${v.historyChange>=0?'positive':'negative'}">${signed(v.historyChange,1)}<small>%</small></strong><span>窗口首尾变化</span></div>${chart(v.history)}<div class="research-bottom"><span>${v.detailed?'完整观测':'稀疏观测 · 虚线跨过缺失点'}</span><span title="全局剩余研究点">研究 ${'●'.repeat(state.researchLeft)}${'○'.repeat(3-state.researchLeft)}</span></div><details><summary>数据说明</summary><p>人为编写的 AI 教学指数，仅含决策前已可得历史。研究显示同一窗口的更多观测，不会透露本轮结果，也不保证收益。</p><p>${v.history.map(x=>x===null?'缺失':x.toFixed(2)).join(' / ')}</p></details></aside>`;
+  }
+  function targets(){return names.map((name,i)=>{
+    const delta=state.draft[i]-state.weights[i],disabled=i===5,previous=E.view(state,D).previousReturns;
+    return `<button class="sector ${i===5?'cash':''} ${from===i?'source':''} ${selected&&i<5?'targetable':''}" data-target="${i}" style="--sector:${colors[i]}" ${disabled?'disabled':''} aria-label="${name}，当前 ${pct(state.draft[i],2)}${from===i?'，已选为转出板块':''}"><div class="sector-top">${icon(symbols[i])}<span>${name}</span></div><div class="sector-weight">${(state.draft[i]*100).toFixed(1)}<small>%</small><span class="delta ${delta>=0?'positive':'negative'}">${Math.abs(delta)>1e-8?signed(delta,1)+' pp':''}</span></div><div class="weight-track"><i style="width:${state.draft[i]*100}%"></i></div><div class="sector-foot"><span>${i===5?'可用缓冲':'上轮已实现'}</span><b>${i===5?money(state.nav*state.draft[i]):previous?signed(previous[i],1)+'%':'尚未结算'}</b></div></button>`;
+  }).join('');}
+  function cardSymbol(id){return {buy:'up',sell:'shield',rotate:'rotate',scout:'scan',focus:'network',spread:'spread',reserve:'coins'}[id];}
+  function cardLabel(id){if(id==='scout')return '3 → 7';if(id==='spread')return '5 × 1';return `${id==='sell'||id==='reserve'?'−':'+'}${(E.amount(state,id)*100).toFixed(0)}`;}
+  function hand(){return E.hand(state).map((id,i)=>{
+    const c=E.cards[id],used=state.played.some(p=>p.card===id),poor=state.energy<E.cost(state,id)||(id==='scout'&&state.researchLeft===0),disabled=used||poor;
+    return `<button class="play-card card-${id} ${selected===id?'selected':''} ${used?'used':''}" data-card="${id}" ${disabled?'disabled':''} draggable="${!disabled}" aria-pressed="${selected===id}" aria-label="${c.name}，${E.cost(state,id)} 点行动力${used?'，已使用':''}"><span class="card-top"><span>${String(i+1).padStart(2,'0')}</span><b>${icon('bolt')}${E.cost(state,id)}</b></span><span class="card-art">${icon(cardSymbol(id))}<span class="card-orbit"></span></span><strong>${c.name}</strong><span class="card-effect">${cardLabel(id)}<small>${id==='scout'?'观测点':id==='spread'?'pp / 板块':'pp'}</small></span><span class="card-hint">${c.hint}</span>${used?'<span class="used-stamp">已出牌</span>':poor?'<span class="unavailable">'+(id==='scout'&&state.researchLeft===0?'研究点用尽':'行动力不足')+'</span>':''}</button>`;
+  }).join('');}
+  function instruction(){if(!selected)return '点一张牌，再选板块。也可以拖牌到板块上。';if(selected==='rotate')return from===null?'选择一个转出板块。':`从${names[from]}转出；再选择转入板块。`;return `选择要${E.cards[selected].mode==='sell'?'减持':'增持'}的板块。`;}
+  function renderPlan(){return `${heading()}<div class="table-grid"><section class="portfolio-panel"><div class="panel-heading"><span>${ring(state.draft,40)}你的组合 <small>${strategyLabels[state.strategy]}</small></span><span class="portfolio-indicators">Cash ${pct(state.draft[5],1)} <i></i> 最大板块 ${pct(Math.max(...state.draft.slice(0,5)),1)}</span></div><div class="sectors">${targets()}</div><p id="target-instruction" class="target-instruction" aria-live="polite">${icon(selected?'eye':'rotate')}${instruction()}${selected?'<button class="text-button" data-cancel>取消</button>':''}</p></section>${researchPanel()}</div><div class="market-note"><span>${icon('eye')}当前线索</span><p>${escape(D.events[state.round-1].clue)}</p><details><summary>看清约束</summary><p>线索是教学情境，不是预测。最大板块占比衡量集中程度，不是亏损概率；Cash 降低市场暴露，也会放弃上涨参与。</p></details></div><section class="hand-section"><div class="hand-heading"><div><h2>你的手牌</h2><span>每张限用一次 · 行动力每轮恢复</span></div>${energy()}</div><div class="hand">${hand()}</div><div class="action-row"><div><div id="combo" class="combo">${E.combos(state).map(id=>`<span>✦ ${E.comboNames[id]}</span>`).join('')||'<span class="quiet">出牌组合会留在你的回合记录里</span>'}</div><div class="theses"><span>这次更看重</span>${Object.entries(E.reasons).map(([key,label])=>`<button data-reason="${key}" aria-pressed="${state.reason===key}">${icon({trend:'up',buffer:'shield',uncertain:'eye',maintain:'rotate'}[key])}${label}</button>`).join('')}<small>可不选</small></div></div><div class="lock-actions"><button class="text-button" data-reset ${state.played.some(p=>p.card!=='scout')?'':'disabled'}>撤回调仓</button><button class="primary" data-lock>锁定组合 <span>→</span></button></div></div>${state.upgrades.length?`<div class="equipped"><span>本局升级</span>${state.upgrades.map(id=>`<span title="${escape(E.upgrades[id].text)}">${icon(E.upgrades[id].symbol)}${E.upgrades[id].name}</span>`).join('')}</div>`:''}</section>`;}
+  function curve(){
+    const a=[100000,...state.ledger.map(r=>r.after)],b=[100000,...state.ledger.map(r=>r.benchmark_nav)],lo=Math.min(...a,...b)*.994,hi=Math.max(...a,...b)*1.006;
+    const point=(v,i)=>`${24+i*432/6},${134-(v-lo)/(hi-lo)*112}`;
+    return `<svg class="nav-chart" viewBox="0 0 480 160" role="img" aria-label="组合与等权基准的月末净值，包含初始资金"><path d="M24 32H456M24 80H456M24 134H456" class="chart-grid"/><polyline points="${b.map(point).join(' ')}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 5"/><polyline points="${a.map(point).join(' ')}" fill="none" stroke="var(--gold)" stroke-width="2.5"/>${a.map((v,i)=>`<circle cx="${24+i*432/6}" cy="${134-(v-lo)/(hi-lo)*112}" r="3" fill="var(--gold)"/>`).join('')}<text x="24" y="155">起点</text><text x="456" y="155" text-anchor="end">第 6 轮</text><text x="24" y="14">${money(hi)}</text><text x="456" y="148" text-anchor="end">${money(lo)}</text></svg>`;
+  }
+  function contributions(r){const scale=Math.max(...r.sector_contributions.map(Math.abs),.0001);return `<div class="contribution-bars">${names.map((name,i)=>`<div class="contribution-row" style="--sector:${colors[i]};--delay:${i*70}ms"><span>${icon(symbols[i])}${name}</span><div class="signed-track"><i class="${r.sector_contributions[i]>=0?'gain':'loss'}" style="--bar:${Math.abs(r.sector_contributions[i])/scale*48}%;"></i></div><strong class="${r.sector_contributions[i]>=0?'positive':'negative'}">${signed(r.sector_contributions[i])}<small> pp</small></strong></div>`).join('')}</div>`;}
+  function exact(r){return `<details class="exact"><summary>为什么是这个结果？查看完整数字</summary><p>组合收益 = 锁定权重 × 各板块当月收益之和。下面按金融模型分解为四因子、市场、事件、残差与 Cash；组合徽章没有额外收益。</p><div class="exact-grid">${D.contribution_labels.map((label,i)=>`<span>${label}<b>${signed(r.contributions[i],3)} pp</b></span>`).join('')}</div><p>本轮不交易对照差额：${signed(r.effect_vs_hold,3)} pp。它只比较同一期保留轮初持仓，不是研究或学习的因果效果。</p><p>本轮前后：${money(r.before)} → ${money(r.after)}。Sharpe 按模拟月、未年化，rf=0.1%/月；样本不足或零波动时不可计算。回撤包含初始资金，仅观察月末。所有行情为合成教学数据。</p></details>`;}
+  function renderResult(){const r=state.ledger.at(-1);return `${heading()}<section id="resolution" class="resolution" data-round="${state.round}"><div class="result-summary"><p class="eyebrow">MARKET REVEALED</p><h1 tabindex="-1">${escape(r.event)}</h1><div class="round-return ${r.return_value>=0?'positive':'negative'}">${signed(r.return_value)}<small>%</small></div><p>本轮组合收益 <span>${r.after>=r.before?'+':''}${money(r.after-r.before)}</span></p><div class="result-badges">${r.combos.map(id=>`<span>✦ ${E.comboNames[id]}</span>`).join('')||'<span>保持自己的节奏</span>'}</div><small>徽章记录行动，不评价投资能力，也不增加收益。</small></div><div class="result-contributions"><div class="section-heading"><h2>收益从哪里来</h2><span>对本轮组合的贡献</span></div>${contributions(r)}</div></section><div class="result-lower"><section class="curve-panel"><div class="panel-heading"><span>你的六轮旅程</span><span class="chart-legend">组合 <i></i> 等权基准</span></div>${curve()}</section><div class="reflection"><span class="eyebrow">留下一点判断</span><h2>${r.researched?'你带着更多历史出手。':'你用已有信息做了选择。'}</h2><p>${escape(D.events[state.round-1].reflection)}</p><div class="played-summary">${r.cards.length?r.cards.map(p=>`<span>${icon(cardSymbol(p.card))}${E.cards[p.card].name}</span>`).join(''):'本轮未出牌，持仓自然漂移。'}</div>${r.reason?`<small>你记录的关注点：${E.reasons[r.reason]}</small>`:''}</div></div>${exact(r)}<div class="result-actions"><span>${[2,4].includes(state.round)?'下一站：为你的组合选择一项升级。':'未用行动力不结转；剩余研究点保留。'}</span><button class="primary" data-next>${state.round===6?'查看本局复盘':'继续旅程'} <span>→</span></button></div>`;}
+  function renderUpgrade(){return `<section id="upgrade-screen" class="upgrade-screen"><p class="eyebrow">BUILD YOUR APPROACH</p><h1 tabindex="-1">给下一轮，多一种可能。</h1><p>选择一项升级，本局后续轮次持续生效。</p><div class="upgrade-options">${Object.entries(E.upgrades).map(([id,u])=>`<button class="upgrade-option" data-upgrade="${id}" ${state.upgrades.includes(id)?'disabled':''}>${icon(u.symbol)}<span class="upgrade-number">${state.upgrades.includes(id)?'已拥有':'选择升级'}</span><h2>${u.name}</h2><p>${u.text}</p><span class="upgrade-arrow">↗</span></button>`).join('')}</div><div class="upgrade-footer">${timeline()}<span>第 ${state.round} 轮即将开始 · 升级不直接改变市场收益</span></div></section>`;}
+  function renderFinal(){const r=state.ledger.at(-1),excess=(state.nav-r.benchmark_nav)/100000;return `<section id="final-screen"><div class="final-head"><div><p class="eyebrow">SIX ROUNDS. YOUR DECISIONS.</p><h1 tabindex="-1">这一局，是你的选择。</h1><p>看收益，也看看自己怎样使用了信息与行动。</p></div><button class="primary" data-replay>再开一局 <span>↗</span></button></div><div class="final-metrics"><div><span>最终净值</span><strong>${money(state.nav)}</strong><small class="${state.nav>=100000?'positive':'negative'}">${signed(state.nav/100000-1)}%</small></div><div><span>相对等权基准</span><strong class="${excess>=0?'positive':'negative'}">${signed(excess)}<small> pp</small></strong><small>累计收益之差</small></div><div><span>最大回撤</span><strong>${pct(r.maximum_drawdown,2)}</strong><small>含初始资金 · 月末观测</small></div><div><span>月度波动 / Sharpe</span><strong>${r.volatility===null?'N/A':pct(r.volatility,2)}<small> / ${r.sharpe===null?'N/A':r.sharpe.toFixed(2)}</small></strong><small>未年化 · rf 0.1% / 月</small></div></div><div class="final-content"><section class="curve-panel"><div class="panel-heading"><span>组合净值</span><span class="chart-legend">组合 <i></i> 等权基准</span></div>${curve()}<div class="equipped">${state.upgrades.map(id=>`<span>${icon(E.upgrades[id].symbol)}${E.upgrades[id].name}</span>`).join('')}</div></section><section class="journal"><h2>你的出牌轨迹</h2>${state.ledger.map(x=>`<details><summary><b>${String(x.round).padStart(2,'0')}</b><span>${x.cards.map(c=>E.cards[c.card].name).join(' · ')||'保留持仓'}</span><strong class="${x.return_value>=0?'positive':'negative'}">${signed(x.return_value)}%</strong></summary><p>${escape(x.event)} · ${x.researched?'决策前已研究':'决策前未研究'}${x.reason?' · 自选关注：'+E.reasons[x.reason]:''}</p><p>锁定持仓：${x.weights.map((w,i)=>`${names[i]} ${pct(w,2)}`).join(' / ')}</p></details>`).join('')}</section></div><details class="exact"><summary>累计归因与教学边界</summary><div class="exact-grid">${D.contribution_labels.map((label,i)=>`<span>${label}<b>${signed(r.cumulative_contributions[i],3)} pp</b></span>`).join('')}</div><p>累计归因按每轮开始净值加权，与累计收益对账。六轮短样本不能证明真实市场策略有效；不同开局只改变第五张牌，市场场景保持相同。研究、升级与徽章不直接增加投资收益。</p><p>交易成本、税、滑点均为 0。完整历史回测、因子有效性与在线 Coach 尚不在本模式内；本页反馈由规则生成。</p></details></section>`;}
+  function render(){
+    main.innerHTML=state.phase==='choose'?renderChoose():state.phase==='plan'?renderPlan():state.phase==='result'?renderResult():state.phase==='upgrade'?renderUpgrade():renderFinal();
+    const n=document.querySelector('#storage-notice');n.hidden=!notice;n.textContent=notice;
+    document.body.dataset.phase=state.phase;
+  }
+  function select(id){
+    if(state.phase!=='plan')return;
+    if(['scout','spread','reserve'].includes(id)){if(dispatch({type:'play',card:id}))toast(id==='scout'?'同一窗口的 7 个历史观测已展开。':'组合已调整，可在锁定前撤回。');return;}
+    selected=selected===id?null:id;from=null;render();
+    if(selected&&matchMedia('(max-width:800px)').matches){main.querySelector('[data-target="0"]')?.focus({preventScroll:true});main.querySelector('.portfolio-panel')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});}
+    else main.querySelector(`[data-card="${id}"]`)?.focus();
+  }
+  function target(i){
+    if(!selected||i===5)return;
+    if(selected==='rotate'&&from===null){from=i;render();toast(`已选${names[i]}转出，再选一个转入板块。`);return;}
+    if(dispatch({type:'play',card:selected,target:i,...(from!==null?{from}:{})}))toast('组合已调整。锁定前可以继续出牌或撤回调仓。');
+  }
+  main.addEventListener('click',event=>{
+    const b=event.target.closest('button');if(!b||b.disabled)return;
+    if(b.dataset.start)dispatch({type:'start',key:b.dataset.start});
+    else if(b.dataset.card)select(b.dataset.card);
+    else if(b.hasAttribute('data-target'))target(Number(b.dataset.target));
+    else if(b.hasAttribute('data-cancel')){selected=null;from=null;render();}
+    else if(b.hasAttribute('data-reset')){dispatch({type:'reset'});toast('调仓已撤回；已揭晓的研究信息与费用保留。');}
+    else if(b.hasAttribute('data-reason'))dispatch({type:'reason',key:state.reason===b.dataset.reason?null:b.dataset.reason});
+    else if(b.hasAttribute('data-lock'))dispatch({type:'lock'});
+    else if(b.hasAttribute('data-next'))dispatch({type:'next'});
+    else if(b.dataset.upgrade)dispatch({type:'upgrade',key:b.dataset.upgrade});
+    else if(b.hasAttribute('data-replay')){state=E.initial(freshSeed());selected=null;from=null;save();render();main.querySelector('h1')?.focus();}
+  });
+  main.addEventListener('dragstart',event=>{const card=event.target.closest('[data-card]');if(!card||card.disabled)return;event.dataTransfer.setData('text/plain',card.dataset.card);event.dataTransfer.effectAllowed='move';});
+  main.addEventListener('dragover',event=>{if(event.target.closest('[data-target]'))event.preventDefault();});
+  main.addEventListener('drop',event=>{const tile=event.target.closest('[data-target]');if(!tile)return;event.preventDefault();const id=event.dataTransfer.getData('text/plain');if(!E.hand(state).includes(id))return;if(['scout','spread','reserve'].includes(id)){select(id);return;}selected=id;from=null;target(Number(tile.dataset.target));});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&selected){selected=null;from=null;render();}});
+  document.querySelector('#help-open').addEventListener('click',()=>document.querySelector('#help').showModal());
+  document.querySelector('#help-close').addEventListener('click',()=>document.querySelector('#help').close());
+  render();
+})();

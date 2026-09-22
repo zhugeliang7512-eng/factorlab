@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b24">
+  <title>FactorLab · 投资决策牌桌</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data.js"></script>
+  <script defer src="engine.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到牌桌</a>
+  <header class="site-head">
+    <a class="wordmark" href="index.html" aria-label="FactorLab 当前游戏"><span class="brand-mark">F<span>∕</span></span>FactorLab<span class="edition">决策牌桌</span></a>
+    <nav aria-label="游戏导航"><button id="help-open" class="text-button">怎么玩</button><a href="../full-game/index.html">经典版 ↗</a></nav>
+  </header>
+  <p id="storage-notice" class="notice" role="status" hidden></p>
+  <main id="main" tabindex="-1"><p class="loading">正在铺开牌桌…</p></main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <footer>合成教学市场 · 每轮 1 个月 · 无真实交易 <span>决策有代价，结果有不确定性。</span></footer>
+  <dialog id="help"><button id="help-close" class="text-button close" aria-label="关闭玩法说明">关闭 ×</button><h2>用有限的行动，组合你的判断。</h2><ol><li>每轮获得 5 张牌、3 点行动力。点牌，再点板块；鼠标也可以拖牌。</li><li>轮动牌先选转出板块，再选转入板块。每张牌每轮使用一次。</li><li>研究展开 AI 的已有历史，不预测未来。全局只有 3 个研究点。</li><li>锁定后揭晓市场；第 2、4 轮后选择升级。也可以一张牌都不出。</li></ol><p>卡牌额度为组合权重的百分点（pp）。资金不足时只移动可用部分。撤回调仓会返还交易行动力，研究费用不会退还。</p><p>教学设定：初始资金 100,000；Cash 每模拟月 0.1%；交易成本、税和滑点均为 0。基准为五个风险板块每轮等权。组合徽章不改变收益，分散不等于无风险。</p></dialog>
+  <noscript>游戏需要浏览器开启 JavaScript。经典版也需要 JavaScript。</noscript>
+</body>
+</html>
