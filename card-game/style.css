@@ -44,3 +44,20 @@
   .theses button{padding-top:5px;padding-bottom:5px}
 }
 @media(max-width:800px){.hand-section .hand-heading>div:first-child:after{content:'横滑查看全部 5 张牌';display:block;color:var(--gold);font-size:10px;margin-top:7px}.portfolio-panel{scroll-margin-top:12px}}
+
+/* D16 R1-R3: anchor framing, mode picker, cycle chips, cost lines */
+.mode-picker{display:flex;align-items:stretch;gap:10px;margin:26px 0 6px;flex-wrap:wrap}
+.mode-label{align-self:center;font-size:13px;color:var(--muted);letter-spacing:1px}
+.mode-option{flex:1;min-width:220px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s}
+.mode-option b{font-size:14px}
+.mode-option span{font-size:12px;color:var(--muted)}
+.mode-option.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.mode-option[aria-pressed="true"] b::after{content:" ✓";color:var(--gold)}
+.cycle-row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 2px}
+.cycle-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.cycle-chip i{width:7px;height:7px;border-radius:50%;background:var(--sector)}
+.cycle-chip b{font-weight:600;color:var(--text)}
+.cycle-chip small{font-size:11px}
+.costs-line,.anchor-line{font-size:13px;color:var(--muted);margin-top:6px}
+.costs-line span,.anchor-line span{font-weight:600}
+.final-metrics{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
