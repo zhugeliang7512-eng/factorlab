@@ -1,6 +1,10 @@
 (function(root) {
   'use strict';
-  const VERSION = 'card-loop-v1';
+  const VERSION = 'card-loop-v2';
+  const ACCEPTED_VERSIONS = ['card-loop-v1', 'card-loop-v2'];
+  const SECTOR_CAP = 0.40;
+  const COST_RATES = {commission:.0003, slippage:.001, stamp:.0005};
+  const costRate = side => COST_RATES.commission + COST_RATES.slippage + (side==='sell' ? COST_RATES.stamp : 0);
   const cards = {
     buy: {name:'试探建仓', cost:1, amount:.03, mode:'buy', hint:'Cash → 所选板块'},
     sell: {name:'留出缓冲', cost:1, amount:.04, mode:'sell', hint:'所选板块 → Cash'},
@@ -40,7 +44,8 @@
   }
   function initial(seed=1) {
     return {seed:Number.isInteger(seed)&&seed>=0&&seed<=0xffffffff?seed:1,phase:'choose',round:1,strategy:null,
-      weights:[],draft:[],nav:100000,ledger:[],played:[],energy:3,researchLeft:3,upgrades:[],reason:null,commands:[]};
+      mode:'teaching',weights:[],draft:[],nav:100000,ledger:[],played:[],energy:3,researchLeft:3,upgrades:[],reason:null,
+      anchorWeights:null,anchorNav:100000,commands:[]};
   }
   const maxEnergy = s => s.upgrades.includes('energy')?4:3;
   const hand = s => ['buy','sell','rotate','scout',['focus','spread','reserve'][(s.seed+s.round-1)%3]];
@@ -53,15 +58,15 @@
     if(ids.includes('spread')||new Set(s.played.filter(p=>['buy','focus','rotate'].includes(p.card)).map(p=>p.target)).size>1)list.push('diverse');
     return list;
   }
-  function applyCard(s,a) {
+  function projectDraft(s,a) {
     const id=a.card;
     if(!hand(s).includes(id)||s.played.some(p=>p.card===id)||s.energy<cost(s,id))return null;
-    const w=[...s.draft], card=cards[id], c=cost(s,id), moved=[];
+    const w=[...s.draft], card=cards[id], moved=[];
     const sector = v => Number.isInteger(v)&&v>=0&&v<5;
     const transfer=(from,to,value)=>{const n=Math.min(value,w[from]);if(n>1e-12){w[from]-=n;w[to]+=n;moved.push({from,to,amount:n});}};
     if(card.mode==='scout'){
       if(s.researchLeft<=0)return null;
-      return {...s,energy:s.energy-c,researchLeft:s.researchLeft-1,played:[...s.played,{card:id,cost:c,moved:[]}]};
+      return {scoutOnly:true, moved:[]};
     }
     if(card.mode==='buy'||card.mode==='sell'){
       if(!sector(a.target))return null;
@@ -77,14 +82,58 @@
       transfer(largest,5,card.amount);
     }
     if(moved.length===0||!validWeights(w))return null;
-    return {...s,draft:w,energy:s.energy-c,played:[...s.played,{card:id,cost:c,target:a.target??null,from:a.from??null,moved}]};
+    return {draft:w,moved};
+  }
+  const capBlocked = (s,a) => {
+    if(s.mode!=='realistic')return false;
+    const p=projectDraft(s,a);
+    return !!p&&!p.scoutOnly&&Math.max(...p.draft.slice(0,5))>SECTOR_CAP+1e-9;
+  };
+  function applyCard(s,a) {
+    const p=projectDraft(s,a);
+    if(!p)return null;
+    const c=cost(s,a.card);
+    if(p.scoutOnly){
+      return {...s,energy:s.energy-c,researchLeft:s.researchLeft-1,played:[...s.played,{card:a.card,cost:c,moved:[]}]};
+    }
+    if(s.mode==='realistic'&&Math.max(...p.draft.slice(0,5))>SECTOR_CAP+1e-9)return null;
+    return {...s,draft:p.draft,energy:s.energy-c,played:[...s.played,{card:a.card,cost:c,target:a.target??null,from:a.from??null,moved:p.moved}]};
+  }
+  function roundCosts(s) {
+    if(s.mode!=='realistic')return 0;
+    let total=0;
+    for(const p of s.played)for(const m of p.moved||[]){
+      const buy=m.from===5, sell=m.to===5;
+      let rate=0;
+      if(buy||!sell)rate+=costRate('buy');
+      if(sell||!buy)rate+=costRate('sell');
+      total+=m.amount*s.nav*rate;
+    }
+    return total;
+  }
+  function cycleSeries(s,i,D) {
+    const pre=i===4?D.pregame.slice(1).map((v,k)=>v/D.pregame[k]-1):[];
+    return pre.concat(s.ledger.map(r=>r.sector_returns_snapshot[i]));
+  }
+  function cyclesOf(s,D) {
+    const label=c=>c>0.06?['扩张','boom']:c>0?['复苏','recover']:c>=-0.06?['放缓','slow']:['收缩','contract'];
+    return [0,1,2,3,4].map(i=>{
+      const series=cycleSeries(s,i,D), tail=series.slice(-3);
+      if(tail.length<3)return {sector:i,cum3:null,phase:null,phaseKey:null,observations:series.length};
+      const cum3=tail.reduce((n,v)=>n*(1+v),1)-1;
+      const [phase,phaseKey]=label(cum3);
+      return {sector:i,cum3,phase,phaseKey,observations:series.length};
+    });
   }
   function reduce(s,a,D) {
     if(!a||typeof a!=='object')return s;
     let n=null, command=null;
     if(a.type==='start'&&s.phase==='choose'&&Object.hasOwn(D.strategies,a.key)){
       const w=D.strategies[a.key].weights;
-      n={...s,phase:'plan',strategy:a.key,weights:[...w],draft:[...w]};command={type:'start',key:a.key};
+      const mode=a.mode==='realistic'?'realistic':'teaching';
+      n={...s,phase:'plan',strategy:a.key,mode,weights:[...w],draft:[...w],anchorWeights:[...w],anchorNav:100000};
+      command={type:'start',key:a.key};
+      if(mode==='realistic')command.mode='realistic';
     }else if(a.type==='play'&&s.phase==='plan'){
       n=applyCard(s,a);command={type:'play',card:a.card};
       if(n&&Number.isInteger(a.target))command.target=a.target;
@@ -99,7 +148,22 @@
       r.cards=s.played.map(p=>({...p}));r.combos=combos(s);r.reason=s.reason;
       r.effect_vs_hold=r.return_value-sum(s.weights.map((w,i)=>w*market.sector_returns[i]));
       r.researched=s.played.some(p=>p.card==='scout');
-      n={...s,phase:'result',nav:r.after,weights:r.drift,ledger:[...s.ledger,r]};command={type:'lock'};
+      r.sector_returns_snapshot=[...market.sector_returns];
+      const aw=s.anchorWeights||[...s.weights];
+      const anchorRet=sum(aw.map((w,i)=>w*market.sector_returns[i]));
+      r.anchor_weights=[...aw];r.anchor_return=anchorRet;
+      r.anchor_nav=s.anchorNav*(1+anchorRet);
+      r.tactical_pp=r.return_value-anchorRet;
+      r.costs_paid=roundCosts(s);
+      if(r.costs_paid>0){
+        r.after=r.after-r.costs_paid;
+        let peak=100000, dd=0;
+        for(const v of [100000,...s.ledger.map(x=>x.after),r.after]){peak=Math.max(peak,v);dd=Math.max(dd,1-v/peak);}
+        r.maximum_drawdown=dd;
+      }
+      const anchorDrift=aw.map((w,i)=>w*(1+market.sector_returns[i])/(1+anchorRet));
+      n={...s,phase:'result',nav:r.after,weights:r.drift,ledger:[...s.ledger,r],
+        anchorWeights:anchorDrift,anchorNav:r.anchor_nav};command={type:'lock'};
     }else if(a.type==='next'&&s.phase==='result'){
       n=s.round===6?{...s,phase:'final'}:{...s,phase:s.round===2||s.round===4?'upgrade':'plan',round:s.round+1,draft:[...s.weights],energy:maxEnergy(s),played:[],reason:null};command={type:'next'};
     }else if(a.type==='upgrade'&&s.phase==='upgrade'&&Object.hasOwn(upgrades,a.key)&&!s.upgrades.includes(a.key)){
@@ -113,18 +177,19 @@
     const full=prices.slice(-7), detailed=s.played.some(p=>p.card==='scout')||s.phase==='result'||s.phase==='final';
     return {round:s.round,clue:D.events[s.round-1],cutoff:s.round-1,detailed,
       history:full.map((v,i)=>detailed||i===0||i===3||i===6?v:null),
-      historyChange:full.at(-1)/full[0]-1,previousReturns:s.round>1?[...D.rounds[s.round-2].sector_returns]:null};
+      historyChange:full.at(-1)/full[0]-1,previousReturns:s.round>1?[...D.rounds[s.round-2].sector_returns]:null,
+      cycles:cyclesOf(s,D)};
   }
   const serialize = s => JSON.stringify({version:VERSION,seed:s.seed,commands:s.commands});
   function restore(raw,D) {
     try{
       const x=JSON.parse(raw);
-      if(x?.version!==VERSION||!Number.isInteger(x.seed)||x.seed<0||x.seed>0xffffffff||!Array.isArray(x.commands)||x.commands.length>500)return null;
+      if(!ACCEPTED_VERSIONS.includes(x?.version)||!Number.isInteger(x.seed)||x.seed<0||x.seed>0xffffffff||!Array.isArray(x.commands)||x.commands.length>500)return null;
       let s=initial(x.seed);
       for(const a of x.commands){const n=reduce(s,a,D);if(n===s)return null;s=n;}
       return s;
     }catch{return null;}
   }
-  const E={VERSION,cards,upgrades,reasons,comboNames,initial,hand,cost,amount,maxEnergy,combos,settle,reduce,view,serialize,restore};
+  const E={VERSION,ACCEPTED_VERSIONS,SECTOR_CAP,COST_RATES,cards,upgrades,reasons,comboNames,initial,hand,cost,amount,maxEnergy,combos,settle,projectDraft,capBlocked,roundCosts,cyclesOf,reduce,view,serialize,restore};
   if(typeof module!=='undefined')module.exports=E;else root.FACTORLAB_CARDS=E;
 })(typeof window==='undefined'?globalThis:window);
