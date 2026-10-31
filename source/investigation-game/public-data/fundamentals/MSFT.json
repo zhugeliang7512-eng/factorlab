@@ -1,0 +1,70 @@
+{
+  "ticker": "MSFT",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2023-06-30",
+      "ep": 0.02915280519966082,
+      "roe": 0.35088714643856406,
+      "observedAt": "2023-06-30",
+      "availableAt": "2023-10-24",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2024-06-30",
+      "ep": 0.026866557916125248,
+      "roe": 0.32828137978299815,
+      "observedAt": "2024-06-30",
+      "availableAt": "2024-07-30",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2025-06-30",
+      "ep": null,
+      "roe": 0.07928577875212167,
+      "observedAt": "2025-06-30",
+      "availableAt": "2025-07-30",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2025-09-30",
+      "ep": null,
+      "roe": 0.07642201632716016,
+      "observedAt": "2025-09-30",
+      "availableAt": "2026-01-28",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2025-12-31",
+      "ep": null,
+      "roe": 0.09838951071314359,
+      "observedAt": "2025-12-31",
+      "availableAt": "2026-04-29",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2026-03-31",
+      "ep": null,
+      "roe": 0.07669047004225722,
+      "observedAt": "2026-03-31",
+      "availableAt": "2026-07-29",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "MSFT",
+      "periodEnd": "2026-06-30",
+      "ep": null,
+      "roe": 0.08084776451387586,
+      "observedAt": "2026-06-30",
+      "availableAt": "2026-10-28",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}

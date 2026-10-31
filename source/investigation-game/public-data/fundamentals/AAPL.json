@@ -1,0 +1,79 @@
+{
+  "ticker": "AAPL",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2022-09-30",
+      "ep": 0.045075073912209496,
+      "roe": 1.9695887275023682,
+      "observedAt": "2022-09-30",
+      "availableAt": "2022-10-27",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2023-09-30",
+      "ep": 0.03628823724202818,
+      "roe": 1.5607601454639075,
+      "observedAt": "2023-09-30",
+      "availableAt": "2023-11-02",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2024-09-30",
+      "ep": 0.026312705653199597,
+      "roe": 1.6459350307287095,
+      "observedAt": "2024-09-30",
+      "availableAt": "2024-10-31",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2025-06-30",
+      "ep": null,
+      "roe": 0.355977517849005,
+      "observedAt": "2025-06-30",
+      "availableAt": "2025-07-31",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2025-09-30",
+      "ep": null,
+      "roe": 0.3725062048200941,
+      "observedAt": "2025-09-30",
+      "availableAt": "2025-10-30",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2025-12-31",
+      "ep": null,
+      "roe": 0.4773443701099898,
+      "observedAt": "2025-12-31",
+      "availableAt": "2026-04-30",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2026-03-31",
+      "ep": null,
+      "roe": 0.277751171460499,
+      "observedAt": "2026-03-31",
+      "availableAt": "2026-04-30",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "AAPL",
+      "periodEnd": "2026-06-30",
+      "ep": null,
+      "roe": 0.277055431547619,
+      "observedAt": "2026-06-30",
+      "availableAt": "2026-07-30",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}

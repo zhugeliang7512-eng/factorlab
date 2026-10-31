@@ -1,0 +1,70 @@
+{
+  "ticker": "SMCI",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2023-06-30",
+      "ep": 0.04585757412182758,
+      "roe": 0.3245417734742052,
+      "observedAt": "2023-06-30",
+      "availableAt": "2023-08-08",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2024-06-30",
+      "ep": 0.024519436869004776,
+      "roe": 0.2127786907125186,
+      "observedAt": "2024-06-30",
+      "availableAt": "2024-08-06",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2025-06-30",
+      "ep": null,
+      "roe": 0.03096850322603783,
+      "observedAt": "2025-06-30",
+      "availableAt": "2025-08-05",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2025-09-30",
+      "ep": null,
+      "roe": 0.025797169876398622,
+      "observedAt": "2025-09-30",
+      "availableAt": "2025-11-04",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2025-12-31",
+      "ep": null,
+      "roe": 0.05728877869970245,
+      "observedAt": "2025-12-31",
+      "availableAt": "2026-02-03",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2026-03-31",
+      "ep": null,
+      "roe": 0.06380984313761727,
+      "observedAt": "2026-03-31",
+      "availableAt": "2026-05-05",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SMCI",
+      "periodEnd": "2026-06-30",
+      "ep": null,
+      "roe": 0.07898130398857636,
+      "observedAt": "2026-06-30",
+      "availableAt": "2026-08-11",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}

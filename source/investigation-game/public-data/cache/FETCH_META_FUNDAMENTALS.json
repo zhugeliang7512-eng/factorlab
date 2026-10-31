@@ -1,0 +1,243 @@
+{
+  "asOf": "2026-10-29",
+  "source": "yfinance income/balance annual+quarterly",
+  "ok": [
+    {
+      "ticker": "AAPL",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "ADBE",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "ADI",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "AMAT",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "AMD",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "ANET",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "ASML",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "AVGO",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "CAT",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "CDNS",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "CRM",
+      "rows": 9,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "CRWD",
+      "rows": 8,
+      "ep": 2,
+      "roe": 8
+    },
+    {
+      "ticker": "DE",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "ENPH",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "ETN",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "FSLR",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "GE",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "HON",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "INTC",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "KEYS",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "KLAC",
+      "rows": 7,
+      "ep": 2,
+      "roe": 7
+    },
+    {
+      "ticker": "LRCX",
+      "rows": 8,
+      "ep": 2,
+      "roe": 8
+    },
+    {
+      "ticker": "MRVL",
+      "rows": 9,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "MSFT",
+      "rows": 7,
+      "ep": 2,
+      "roe": 7
+    },
+    {
+      "ticker": "MU",
+      "rows": 8,
+      "ep": 3,
+      "roe": 7
+    },
+    {
+      "ticker": "NOW",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "NVDA",
+      "rows": 9,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "ON",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "ORCL",
+      "rows": 9,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "PANW",
+      "rows": 8,
+      "ep": 3,
+      "roe": 7
+    },
+    {
+      "ticker": "QCOM",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "ROK",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "SMCI",
+      "rows": 7,
+      "ep": 2,
+      "roe": 7
+    },
+    {
+      "ticker": "SNPS",
+      "rows": 8,
+      "ep": 3,
+      "roe": 8
+    },
+    {
+      "ticker": "TER",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "TSLA",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "TSM",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "TXN",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    },
+    {
+      "ticker": "UBER",
+      "rows": 9,
+      "ep": 4,
+      "roe": 8
+    }
+  ],
+  "fail": [],
+  "nOk": 39,
+  "nFail": 0
+}

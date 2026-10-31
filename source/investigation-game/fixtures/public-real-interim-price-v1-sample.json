@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "studyresult/1",
+  "studyId": "public-real-interim-price-v1",
+  "dataProvenance": "public_real",
+  "factorUniverseVersion": "factors-public-price-v1",
+  "sampleWindow": {
+    "start": "2019-07-31",
+    "end": "2024-12-31",
+    "frequency": "month"
+  },
+  "sampleCount": 58,
+  "factors": [
+    {
+      "id": "Momentum",
+      "meanIC": 0.014449253106240399,
+      "validMonths": 58
+    },
+    {
+      "id": "LowVol",
+      "meanIC": -0.018075527013821018,
+      "validMonths": 58
+    }
+  ],
+  "publicSourceRefs": [
+    {
+      "title": "Yahoo Finance chart API v8 monthly — primary public price source",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
+      "asOf": "2026-10-29"
+    },
+    {
+      "title": "FactorLab frozen universe factors-public-price-v1 (interim Momentum+LowVol)",
+      "url": "https://github.com/zhugeliang7512-eng/factorlab",
+      "asOf": "2019-07-31"
+    },
+    {
+      "title": "Yahoo Finance chart v8 monthly OHLCV cache via laptop (2026-10-29); 39 tickers under public-data/prices/ (box Yahoo 403)",
+      "url": "https://finance.yahoo.com/",
+      "asOf": "2026-10-29"
+    },
+    {
+      "title": "Survivorship: universe frozen intent 2019-07-31; cache tickers are 2026 still-listed names overlapping universe plus extras (approximate high-end manufacturing ∪ frontier tech); not a full investable universe",
+      "url": "https://github.com/zhugeliang7512-eng/factorlab",
+      "asOf": "2026-10-29"
+    }
+  ],
+  "note": "interim: factorUniverseVersion=factors-public-price-v1，仅 Momentum+LowVol；Value/Quality 未测。 公开样本上的 Rank IC 测量（非投资建议）；披露幸存者/选样偏差与交易成本=0；不证明投资功效。 Momentum=6m 累计简单收益；LowVol=−stdev(6m, ddof=1)；Value=E/P；Quality=ROE。 基本面 STRICT availableAt ≤ decisionTime；晚于决策时点的披露视为缺失（look-ahead rejection）。 价量来自 2026-10-29 本机 Yahoo chart v8 monthly 缓存（box 403）；幸存者/选样偏差：缓存名单为高端制造∪前沿科技近似子集，非完整可投宇宙；交易成本=0；不证明投资功效。",
+  "interim": true,
+  "industryTrack": "both",
+  "lookback": 6
+}

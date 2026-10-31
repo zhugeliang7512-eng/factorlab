@@ -20,6 +20,20 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+
+def json_safe(obj):
+    """Replace NaN/Inf with None for strict JSON."""
+    import math
+    if isinstance(obj, float):
+        if math.isnan(obj) or math.isinf(obj):
+            return None
+        return obj
+    if isinstance(obj, dict):
+        return {k: json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [json_safe(v) for v in obj]
+    return obj
+
 UNIVERSE_PATH = ROOT / "universe-factors-public-v1.json"
 PRICES_DIR = ROOT / "prices"
 FUND_DIR = ROOT / "fundamentals"
@@ -74,83 +88,119 @@ def month_end_adj_close_from_yf(ticker: str, start: str, end: str):
     return rows
 
 
-def fundamentals_best_effort(ticker: str) -> list:
-    """Best-effort EPS / ROE rows with disclosure dates for availableAt logic.
+def fundamentals_best_effort(ticker: str, price_rows: list | None = None) -> list:
+    """Best-effort E/P and ROE with disclosure dates for availableAt logic.
 
-    availableAt = filed/disclosure date when known, else periodEnd + 45 calendar days.
-    Returns [] on failure (never invents numbers).
+    Value ep := Diluted EPS / adjClose near periodEnd (earnings yield), NOT raw EPS.
+    Quality roe := Net Income / Stockholders Equity.
+    availableAt = earnings/disclosure date when known, else periodEnd + 45 calendar days.
+    Returns [] on failure (never invents numbers). Omits trailing "as-of-today" info rows
+    that would look-ahead contaminate the sample window.
     """
+    import math
     import pandas as pd
     import yfinance as yf
 
     t = yf.Ticker(ticker)
     rows = []
+    pmap = {}
+    if price_rows:
+        for r in price_rows:
+            if r and r.get("date") is not None and r.get("adjClose") is not None:
+                try:
+                    pmap[str(r["date"])[:10]] = float(r["adjClose"])
+                except (TypeError, ValueError):
+                    pass
+
+    def nearest_price(date_str: str, window: int = 40):
+        if not pmap:
+            return None
+        target = pd.Timestamp(date_str)
+        best = None
+        best_delta = None
+        for d, px in pmap.items():
+            ts = pd.Timestamp(d)
+            if ts <= target and (target - ts).days <= window:
+                delta = (target - ts).days
+                if best_delta is None or delta < best_delta:
+                    best, best_delta = px, delta
+        if best is not None:
+            return best
+        for d, px in pmap.items():
+            ts = pd.Timestamp(d)
+            if ts > target and (ts - target).days <= window:
+                delta = (ts - target).days
+                if best_delta is None or delta < best_delta:
+                    best, best_delta = px, delta
+        return best
+
+    def pick_label(index, cands):
+        for c in cands:
+            if c in index:
+                return c
+        return None
+
+    def finite(x):
+        try:
+            v = float(x)
+        except (TypeError, ValueError):
+            return None
+        if math.isnan(v) or math.isinf(v):
+            return None
+        return v
+
     try:
-        info = t.info or {}
-    except Exception:
-        info = {}
-    # Point-in-time quarterly earnings dates if available
-    try:
-        ed = t.get_earnings_dates(limit=24)
+        ed = t.get_earnings_dates(limit=40)
     except Exception:
         ed = None
-    try:
-        fin = t.quarterly_financials
-        bs = t.quarterly_balance_sheet
-    except Exception:
-        fin, bs = None, None
 
-    # Prefer structured income / equity if present
-    if fin is not None and not fin.empty:
-        # Net Income row names vary
-        ni_label = None
-        for cand in ("Net Income", "Net Income Common Stockholders", "NetIncome"):
-            if cand in fin.index:
-                ni_label = cand
-                break
+    def stmt_rows(fin, bs, freq: str):
+        out = []
+        if fin is None or getattr(fin, "empty", True):
+            return out
+        ni_label = pick_label(
+            fin.index,
+            (
+                "Net Income Common Stockholders",
+                "Net Income",
+                "Net Income From Continuing Operation Net Minority Interest",
+                "NetIncome",
+            ),
+        )
+        eps_label = pick_label(fin.index, ("Diluted EPS", "Basic EPS"))
         equity_label = None
-        if bs is not None and not bs.empty:
-            for cand in (
-                "Stockholders Equity",
-                "Total Stockholder Equity",
-                "Common Stock Equity",
-                "Total Equity Gross Minority Interest",
-            ):
-                if cand in bs.index:
-                    equity_label = cand
-                    break
+        if bs is not None and not getattr(bs, "empty", True):
+            equity_label = pick_label(
+                bs.index,
+                (
+                    "Stockholders Equity",
+                    "Common Stock Equity",
+                    "Total Stockholder Equity",
+                    "Total Equity Gross Minority Interest",
+                ),
+            )
         for col in fin.columns:
-            period_end = col
-            if hasattr(period_end, "strftime"):
-                pe = period_end.strftime("%Y-%m-%d")
-            else:
-                pe = str(period_end)[:10]
+            pe = col.strftime("%Y-%m-%d") if hasattr(col, "strftime") else str(col)[:10]
             ep = None
             roe = None
-            # EPS from info is trailing — skip inventing; leave ep null unless we can derive
-            if ni_label is not None:
-                try:
-                    ni = float(fin.loc[ni_label, col])
-                except Exception:
-                    ni = None
-            else:
-                ni = None
+            ni = finite(fin.loc[ni_label, col]) if ni_label is not None else None
             equity = None
             if equity_label is not None and bs is not None and col in bs.columns:
-                try:
-                    equity = float(bs.loc[equity_label, col])
-                except Exception:
-                    equity = None
-            if ni is not None and equity not in (None, 0) and abs(equity) > 0:
+                equity = finite(bs.loc[equity_label, col])
+            if ni is not None and equity not in (None, 0):
                 roe = ni / equity
-            # shares for E/P approximation not reliable here → leave ep null unless trailingEps
+            eps = finite(fin.loc[eps_label, col]) if eps_label is not None else None
+            px = nearest_price(pe)
+            if eps is not None and px not in (None, 0):
+                ep = eps / px
             available_at = None
             if ed is not None and hasattr(ed, "index"):
-                # nearest earnings date on/after period end within ~90d
                 try:
                     pe_ts = pd.Timestamp(pe)
                     for idx in ed.index:
-                        d = pd.Timestamp(idx).tz_localize(None) if getattr(idx, "tzinfo", None) else pd.Timestamp(idx)
+                        d = pd.Timestamp(idx)
+                        if getattr(d, "tzinfo", None) is not None:
+                            d = d.tz_localize(None)
                         if d >= pe_ts and (d - pe_ts).days <= 120:
                             available_at = d.strftime("%Y-%m-%d")
                             break
@@ -158,11 +208,12 @@ def fundamentals_best_effort(ticker: str) -> list:
                     available_at = None
             if available_at is None:
                 try:
-                    pe_ts = pd.Timestamp(pe) + pd.Timedelta(days=45)
-                    available_at = pe_ts.strftime("%Y-%m-%d")
+                    available_at = (pd.Timestamp(pe) + pd.Timedelta(days=45)).strftime("%Y-%m-%d")
                 except Exception:
                     available_at = pe
-            rows.append(
+            if ep is None and roe is None:
+                continue
+            out.append(
                 {
                     "ticker": ticker,
                     "periodEnd": pe,
@@ -170,28 +221,35 @@ def fundamentals_best_effort(ticker: str) -> list:
                     "roe": roe,
                     "observedAt": pe,
                     "availableAt": available_at,
-                    "source": "yfinance-quarterly",
+                    "source": f"yfinance-{freq}",
                 }
             )
+        return out
 
-    # Trailing bookends from info (weak; tagged)
-    te = info.get("trailingEps")
-    roe_info = info.get("returnOnEquity")
-    if te is not None or roe_info is not None:
-        asof = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        rows.append(
-            {
-                "ticker": ticker,
-                "periodEnd": asof,
-                "ep": float(te) if te is not None else None,
-                "roe": float(roe_info) if roe_info is not None else None,
-                "observedAt": asof,
-                "availableAt": asof,
-                "source": "yfinance-info-trailing",
-                "note": "trailing snapshot only; prefer quarterly rows for look-ahead-safe backtests",
-            }
-        )
-    return rows
+    try:
+        qfin = t.quarterly_income_stmt
+        qbs = t.quarterly_balance_sheet
+    except Exception:
+        qfin, qbs = None, None
+    rows.extend(stmt_rows(qfin, qbs, "quarterly"))
+    try:
+        afin = t.income_stmt
+        abs_ = t.balance_sheet
+    except Exception:
+        afin, abs_ = None, None
+    rows.extend(stmt_rows(afin, abs_, "annual"))
+
+    by_pe = {}
+    for r in rows:
+        pe = r["periodEnd"]
+        prev = by_pe.get(pe)
+        if prev is None or (
+            str(prev.get("source", "")).endswith("annual")
+            and str(r.get("source", "")).endswith("quarterly")
+        ):
+            by_pe[pe] = r
+    return [by_pe[k] for k in sorted(by_pe.keys())]
+
 
 
 def write_price_file(ticker: str, rows: list) -> Path:
@@ -211,8 +269,8 @@ def write_price_file(ticker: str, rows: list) -> Path:
 def write_fund_file(ticker: str, rows: list) -> Path:
     FUND_DIR.mkdir(parents=True, exist_ok=True)
     path = FUND_DIR / f"{ticker}.json"
-    payload = {"ticker": ticker, "source": "yahoo-yfinance", "rows": rows}
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    payload = json_safe({"ticker": ticker, "source": "yahoo-yfinance", "rows": rows})
+    path.write_text(json.dumps(payload, indent=2, allow_nan=False), encoding="utf-8")
     return path
 
 
@@ -321,7 +379,7 @@ def main(argv: list[str] | None = None) -> int:
             p = write_price_file(ticker, rows)
             written.append(p)
             try:
-                frows = fundamentals_best_effort(ticker)
+                frows = fundamentals_best_effort(ticker, rows)
                 if frows:
                     written.append(write_fund_file(ticker, frows))
             except Exception as fe:
