@@ -1,5 +1,7 @@
 # public-data · FactorLab Phase A (public_real)
 
+**Current sample (`fixtures/public-real-studyresult-sample.json`):** `studyId=public-real-four-factor-v1`, `factorUniverseVersion=factors-public-v1` — Momentum/LowVol from monthly prices; Value (E/P) and Quality (ROE) from Yahoo annual+quarterly statements. V/Q `validMonths` are sparse because free Yahoo history is shallow. Never hand-fills IC. The prior interim Momentum+LowVol pack is preserved as `fixtures/public-real-interim-price-v1-sample.json` (main sample is four-factor). Softr must not wire unreviewed packs into efficacy KPIs.
+
 Frozen US ticker universe + Yahoo/`yfinance` download helpers for teaching Rank IC on public market history.
 
 **Interim marker:** tonight’s reviewable StudyResult uses `factorUniverseVersion=factors-public-price-v1` (Momentum + LowVol only). Value / Quality are **not measured** until fundamentals snapshots are available; empty or blocked downloads produce honest `meanIC: null` (never hand-filled fake IC).

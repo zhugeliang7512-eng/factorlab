@@ -1,0 +1,79 @@
+{
+  "ticker": "SNPS",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2022-10-31",
+      "ep": 0.021500599085484483,
+      "roe": 0.17850672395741268,
+      "observedAt": "2022-10-31",
+      "availableAt": "2023-02-15",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2023-10-31",
+      "ep": 0.01687116555643028,
+      "roe": 0.20006936369545825,
+      "observedAt": "2023-10-31",
+      "availableAt": "2024-02-21",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2024-10-31",
+      "ep": 0.028251008379574248,
+      "roe": 0.25174674903027594,
+      "observedAt": "2024-10-31",
+      "availableAt": "2025-02-26",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2025-07-31",
+      "ep": null,
+      "roe": 0.008781934409822133,
+      "observedAt": "2025-07-31",
+      "availableAt": "2025-09-09",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2025-10-31",
+      "ep": null,
+      "roe": 0.01583953346986448,
+      "observedAt": "2025-10-31",
+      "availableAt": "2026-02-25",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2026-01-31",
+      "ep": null,
+      "roe": 0.002126366423169047,
+      "observedAt": "2026-01-31",
+      "availableAt": "2026-05-27",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2026-04-30",
+      "ep": null,
+      "roe": 0.0005612220775611208,
+      "observedAt": "2026-04-30",
+      "availableAt": "2026-08-26",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "SNPS",
+      "periodEnd": "2026-07-31",
+      "ep": null,
+      "roe": 0.017520241287556047,
+      "observedAt": "2026-07-31",
+      "availableAt": "2026-08-26",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}

@@ -1,0 +1,79 @@
+{
+  "ticker": "PANW",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "PANW",
+      "periodEnd": "2022-07-31",
+      "ep": null,
+      "roe": null,
+      "observedAt": "2022-07-31",
+      "availableAt": "2022-11-17",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2023-07-31",
+      "ep": 0.005120819193548968,
+      "roe": 0.2514870738961336,
+      "observedAt": "2023-07-31",
+      "availableAt": "2023-11-15",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2024-07-31",
+      "ep": 0.022418623945128696,
+      "roe": 0.49867497146836376,
+      "observedAt": "2024-07-31",
+      "availableAt": "2024-11-20",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2025-07-31",
+      "ep": null,
+      "roe": 0.032438650306748466,
+      "observedAt": "2025-07-31",
+      "availableAt": "2025-11-19",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2025-10-31",
+      "ep": null,
+      "roe": 0.038545874206578186,
+      "observedAt": "2025-10-31",
+      "availableAt": "2026-02-17",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2026-01-31",
+      "ep": null,
+      "roe": 0.04599169594378793,
+      "observedAt": "2026-01-31",
+      "availableAt": "2026-02-17",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2026-04-30",
+      "ep": null,
+      "roe": -0.006397282058695966,
+      "observedAt": "2026-04-30",
+      "availableAt": "2026-06-02",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "PANW",
+      "periodEnd": "2026-07-31",
+      "ep": null,
+      "roe": -0.010257529463116543,
+      "observedAt": "2026-07-31",
+      "availableAt": "2026-11-19",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}
