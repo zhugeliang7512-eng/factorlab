@@ -1,34 +1,84 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-type="software">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light"><title>登录 · FactorLab</title>
-  <link rel="stylesheet" href="releases/51bd30a3936e6d80/auth.css"><script defer src="releases/51bd30a3936e6d80/compat.js"></script><script defer src="releases/51bd30a3936e6d80/vendor/supabase-2.118.0.js"></script><script defer src="releases/51bd30a3936e6d80/cloud-config.js"></script><script defer src="releases/51bd30a3936e6d80/cloud.js"></script><script defer src="releases/51bd30a3936e6d80/auth.js"></script>
-<meta name="factorlab-hosting" content="static"><meta name="factorlab-version" content="51bd30a3936e6d80"></head>
+  <meta name="description" content="FactorLab 行业配置研究工作台。用六轮模拟练习研究、配置和复盘。">
+  <meta name="page-type" content="software"><meta name="site-kind" content="software">
+  <link rel="stylesheet" href="releases/1f4629bd4ea02c5c/auth.css"><script defer data-sources="compat.js vendor/supabase-2.118.0.js cloud-config.js cloud.js auth.js entry.js" src="releases/1f4629bd4ea02c5c/boot-login.js"></script>
+<script>(function () {
+  'use strict';
+  const started = Date.now();
+  let failed = false, done = false, panel;
+  const isLogin = /\/login\.html$/.test(location.pathname);
+  const ready = () => isLogin ? window.FactorLabAuth?.ready : window.FactorLabAccounts?.ready && !document.documentElement.hasAttribute('data-auth-pending');
+  const alternate = location.hostname === 'factorlab-research.zhugeliang-7512.chatgpt.site'
+    ? 'https://zhugeliang7512-eng.github.io/factorlab/research-studio/'
+    : 'https://factorlab-research.zhugeliang-7512.chatgpt.site/research-studio/';
+  function show() {
+    if (done || panel || !document.body) return;
+    panel = document.createElement('section');
+    panel.id = 'startup-recovery';
+    panel.setAttribute('role', 'status');
+    panel.style.cssText = 'position:fixed;z-index:20000;bottom:16px;left:50%;transform:translateX(-50%);width:min(520px,calc(100% - 32px));box-sizing:border-box;padding:18px;background:#faf9f6;color:#252523;border:1px solid #d8d7d1;border-radius:12px;box-shadow:0 8px 30px #0002;font:14px/1.6 system-ui';
+    panel.style.setProperty('display', 'block', 'important');
+    panel.style.setProperty('visibility', 'visible', 'important');
+    const title = document.createElement('strong');
+    title.textContent = '连接较慢或部分内容未载入 / Loading interrupted';
+    const note = document.createElement('p');
+    note.textContent = '可重试加载，已有浏览器进度会保留。备用站点的浏览器存档独立。';
+    const links = document.createElement('div');
+    links.style.cssText = 'display:flex;gap:10px 20px;flex-wrap:wrap';
+    const retry = new URL(location.href); retry.searchParams.set('retry', String(Date.now()));
+    for (const [label, href] of [['重试 / Retry', retry.href], ['访客进入 / Guest', './?guest=1#/research'], ['项目介绍 / About', 'about.html'], ['备用站点 / Alternative', alternate + (isLogin ? 'login.html' : '?guest=1#/research')]]) {
+      const link = document.createElement('a'); link.textContent = label; link.href = href;
+      link.style.cssText = 'color:#814d68;min-height:36px;display:inline-flex;align-items:center;text-underline-offset:4px';
+      links.append(link);
+    }
+    panel.append(title, note, links); document.body.append(panel);
+  }
+  window.addEventListener('error', event => {
+    if (!done && (event.target?.tagName === 'SCRIPT' || event.target?.tagName === 'LINK' || event.error)) { failed = true; show(); }
+  }, true);
+  const timer = setInterval(() => {
+    if (ready()) { done = true; clearInterval(timer); panel?.remove(); }
+    else if (failed || Date.now() - started > 8000) show();
+  }, 200);
+  window.addEventListener('pagehide', () => clearInterval(timer), {once:true});
+})();
+</script><meta name="factorlab-hosting" content="static"><meta name="factorlab-version" content="1f4629bd4ea02c5c"></head>
 <body class="auth-page">
-  <header class="auth-header"><a class="auth-brand" href="./#/portfolio" aria-label="FactorLab">FactorLab<span>ALLOCATION STUDIO</span></a><label class="auth-language-label"><span class="sr-only">Language</span><select id="auth-language" aria-label="语言 Language"><option value="zh-CN">中文</option><option value="en">English</option></select></label></header>
-  <main class="auth-shell">
-    <section class="auth-form-panel" aria-labelledby="auth-title">
-      <div class="auth-form-content">
-        <p class="auth-eyebrow" data-zh="从一次配置开始" data-en="START WITH AN ALLOCATION">从一次配置开始</p>
-        <h1 id="auth-title">欢迎回来</h1><p id="auth-subtitle">继续你的投资练习。</p>
-        <div id="auth-status" class="auth-status" role="status" aria-live="polite"></div>
-        <form id="auth-form" novalidate>
-          <div id="email-field" class="auth-field"><label id="email-label" for="auth-email">邮箱</label><input id="auth-email" name="username" type="email" autocomplete="username" maxlength="254" required></div>
-          <div id="code-field" class="auth-field" hidden><label for="auth-code" data-zh="邮箱验证码" data-en="Email code">邮箱验证码</label><input id="auth-code" name="code" inputmode="numeric" autocomplete="one-time-code" minlength="6" maxlength="10"><button id="auth-resend" class="text-button" type="button">重新发送</button></div>
-          <div id="password-field" class="auth-field"><div class="field-heading"><label id="password-label" for="auth-password">密码</label><button id="auth-forgot" class="text-button" type="button">忘记密码？</button></div><div class="password-input"><input id="auth-password" name="password" type="password" autocomplete="current-password" maxlength="128" required><button id="auth-password-toggle" class="password-toggle" type="button" aria-controls="auth-password" aria-pressed="false">显示</button></div></div>
-          <div id="confirm-field" class="auth-field" hidden><label for="auth-confirm-password" data-zh="确认密码" data-en="Confirm password">确认密码</label><div class="password-input"><input id="auth-confirm-password" name="password-confirm" type="password" autocomplete="new-password" maxlength="128"><button id="auth-confirm-toggle" class="password-toggle" type="button" aria-controls="auth-confirm-password" aria-pressed="false">显示</button></div></div>
-          <button id="auth-submit" class="auth-primary" type="submit" disabled>登录</button>
-        </form>
-        <div class="auth-secondary"><span id="auth-switch-caption">还没有账号？</span><button id="auth-switch" class="text-button" type="button">创建账号</button><button id="auth-back" class="text-button" type="button" hidden>返回登录</button></div>
-        <div class="auth-guest"><button id="auth-guest" class="text-button" type="button" data-zh="先以访客体验" data-en="Explore as a guest">先以访客体验</button><p data-zh="无需注册，进度保留在此浏览器。" data-en="No account needed. Progress stays in this browser.">无需注册，进度保留在此浏览器。</p></div>
+  <header class="auth-header nav">
+    <div class="wrap">
+      <a class="auth-skip" href="#auth-main" data-zh="跳到登录表单" data-en="Skip to sign in">跳到登录表单</a>
+      <a class="auth-brand" href="about.html" aria-label="FactorLab"><svg aria-hidden="true" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 25h24M7 20l6-6 5 2 8-9m-6 0h6v6"/></svg>FactorLab</a>
+      <label class="auth-language-label"><span class="sr-only">Language</span><select id="auth-language" aria-label="语言 Language"><option value="zh-CN">中文</option><option value="en">English</option></select></label>
+    </div>
+  </header>
+  <main class="auth-shell" id="auth-main" tabindex="-1">
+    <section class="auth-entry" aria-labelledby="auth-title">
+      <div class="wrap auth-grid">
+        <div class="auth-form-panel hero-text">
+          <div class="auth-form-content">
+            <h1 id="auth-title">行业配置工作台</h1><p id="auth-subtitle">在 6 轮模拟中练习研究、配置和复盘。</p>
+            <div class="entry-primary"><button id="auth-guest" class="auth-primary" type="button" data-zh="开始本轮练习" data-en="Start your practice">开始本轮练习</button><p data-zh="无需注册，进度保留在此浏览器。" data-en="No account needed. Progress stays in this browser.">无需注册，进度保留在此浏览器。</p></div><p class="entry-signin-label" data-zh="已有账号，可登录继续" data-en="Have an account? Sign in to continue">已有账号，可登录继续</p><form id="auth-form" novalidate>
+              <div id="auth-status" class="auth-status" role="status" aria-live="polite"></div>
+              <div id="email-field" class="auth-field"><label id="email-label" for="auth-email">邮箱</label><input id="auth-email" name="username" type="email" autocomplete="username" maxlength="254" required></div>
+              <div id="code-field" class="auth-field" hidden><label for="auth-code" data-zh="邮箱验证码" data-en="Email code">邮箱验证码</label><input id="auth-code" name="code" inputmode="numeric" autocomplete="one-time-code" minlength="6" maxlength="10"><button id="auth-resend" class="text-button" type="button">重新发送</button></div>
+              <div id="password-field" class="auth-field"><div class="field-heading"><label id="password-label" for="auth-password">密码</label><button id="auth-forgot" class="text-button" type="button">忘记密码？</button></div><div class="password-input"><input id="auth-password" name="password" type="password" autocomplete="current-password" maxlength="128" required><button id="auth-password-toggle" class="password-toggle" type="button" aria-controls="auth-password" aria-pressed="false">显示</button></div></div>
+              <div id="confirm-field" class="auth-field" hidden><label for="auth-confirm-password" data-zh="确认密码" data-en="Confirm password">确认密码</label><div class="password-input"><input id="auth-confirm-password" name="password-confirm" type="password" autocomplete="new-password" maxlength="128"><button id="auth-confirm-toggle" class="password-toggle" type="button" aria-controls="auth-confirm-password" aria-pressed="false">显示</button></div></div>
+              <button id="auth-submit" class="auth-primary" type="submit" disabled>登录</button>
+            </form>
+            <div class="auth-secondary"><span id="auth-switch-caption">还没有账号？</span><button id="auth-switch" class="text-button" type="button">创建账号</button><button id="auth-back" class="text-button" type="button" hidden>返回登录</button></div>
+            
+          </div>
+        </div>
+        <aside class="video-panel" aria-label="FactorLab 角色动画">
+          <div class="login-scene"><video id="login-animation" data-src="releases/1f4629bd4ea02c5c/assets/login/welcome.mp4" poster="releases/1f4629bd4ea02c5c/assets/login/poster.jpg" muted playsinline preload="none" aria-label="FactorLab 角色欢迎动画"></video></div>
+        </aside>
       </div>
     </section>
-    <aside class="video-panel" aria-label="FactorLab 角色动画">
-      <div class="login-scene"><video id="login-animation" data-src="releases/51bd30a3936e6d80/assets/login/welcome.mp4" poster="releases/51bd30a3936e6d80/assets/login/poster.jpg" muted playsinline preload="none" aria-label="FactorLab 角色欢迎动画"></video><button id="animation-toggle" type="button" class="animation-toggle">播放动画</button></div>
-      <div class="video-copy"><p data-zh="看懂配置，也看懂自己。" data-en="Understand your allocation. Discover your approach.">看懂配置，也看懂自己。</p><span data-zh="在模拟市场里，试一试你的想法。" data-en="Try your ideas in a simulated market.">在模拟市场里，试一试你的想法。</span></div>
-    </aside>
-  </main>
+  <nav class="entry-links" aria-label="Site navigation"><a href="about.html">项目介绍 / About FactorLab</a><a data-alternate href="https://factorlab-research.zhugeliang-7512.chatgpt.site/research-studio/login.html">备用入口 / Alternative entrance</a></nav></main>
   <noscript>请启用 JavaScript 后登录，或打开支持 JavaScript 的浏览器。</noscript>
 </body>
 </html>
