@@ -1,0 +1,49 @@
+.woodcut-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex: none;
+  background-image: url("assets/icons/woodcut-atlas.png");
+  background-repeat: no-repeat;
+  filter: grayscale(1) brightness(1.06);
+  pointer-events: none;
+}
+.woodcut-icon { background-size: 615.9722222222222% 307.9861111111111%; }
+.woodcut-icon[data-atlas="research"] { background-position: 2.25437% 8.34725%; clip-path: inset(11.80556% 5.72917%); }
+.woodcut-icon[data-atlas="factors"] { background-position: 21.63526% 8.34725%; clip-path: inset(11.11111% 6.07639%); }
+.woodcut-icon[data-atlas="cycle"] { background-position: 40.44415% 8.59766%; clip-path: inset(9.89583% 6.59722%); }
+.woodcut-icon[data-atlas="backtest"] { background-position: 59.11844% 9.09850%; clip-path: inset(9.20139% 8.50694%); }
+.woodcut-icon[data-atlas="allocation"] { background-position: 78.36474% 8.34725%; clip-path: inset(13.19444% 4.68750%); }
+.woodcut-icon[data-atlas="risk"] { background-position: 97.64468% 8.84808%; clip-path: inset(9.72222% 6.59722%); }
+.woodcut-icon[data-atlas="journal"] { background-position: 2.08614% 50.16694%; clip-path: inset(8.50694% 6.59722%); }
+.woodcut-icon[data-atlas="coach"] { background-position: 21.16420% 51.25209%; clip-path: inset(8.33333% 5.38194%); }
+.woodcut-icon[data-atlas="evidence"] { background-position: 40.71332% 51.25209%; clip-path: inset(11.80556% 1.73611%); }
+.woodcut-icon[data-atlas="account"] { background-position: 59.42127% 50.91820%; clip-path: inset(9.72222% 7.98611%); }
+.woodcut-icon[data-atlas="save"] { background-position: 78.56662% 51.16861%; clip-path: inset(10.93750% 6.42361%); }
+.woodcut-icon[data-atlas="settings"] { background-position: 97.77927% 50.91820%; clip-path: inset(10.06944% 7.29167%); }
+.woodcut-icon[data-atlas="semiconductor"] { background-position: 2.08614% 93.32220%; clip-path: inset(8.68056% 7.29167%); }
+.woodcut-icon[data-atlas="robotics"] { background-position: 21.76985% 93.82304%; clip-path: inset(9.02778% 6.42361%); }
+.woodcut-icon[data-atlas="materials"] { background-position: 40.51144% 93.15526%; clip-path: inset(8.68056% 7.63889%); }
+.woodcut-icon[data-atlas="energy"] { background-position: 59.11844% 94.15693%; clip-path: inset(6.25000% 6.77083%); }
+.woodcut-icon[data-atlas="infrastructure"] { background-position: 78.60027% 93.90651%; clip-path: inset(7.81250% 5.20833%); }
+.woodcut-icon[data-atlas="cash"] { background-position: 97.47645% 93.15526%; clip-path: inset(8.33333% 6.77083%); }
+
+.rail button [data-icon] { width: 36px; height: 36px; }
+.top-actions [data-icon], .panel-head > [data-icon], #save-now [data-icon],
+.sidebar-bottom [data-icon] { width: 28px; height: 28px; }
+.top-actions > .icon-button { min-width: 44px; padding: 7px; }
+.sector-tile > [data-icon] { width: 32px; height: 32px; min-height: 0; margin: 0 0 3px; }
+.allocation-row .sector-label::before { display: none; }
+.sector-label [data-icon] { width: 32px; height: 32px; }
+.sector-label > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.factor-details summary [data-icon] { width: 28px; height: 28px; display: inline-flex; vertical-align: middle; margin-right: 7px; }
+.secondary, .coach-trigger, .icon-button, .presets button {
+  background-image: linear-gradient(160deg, #ffffff0c, #ffffff00 70%);
+  box-shadow: inset 0 1px 0 #ffffff0a, 0 3px 10px #00000014;
+}
+@media (max-width: 767px) {
+  .rail button { padding-top: 3px; padding-bottom: 3px; gap: 1px; }
+  .rail button [data-icon] { width: 32px; height: 32px; }
+  .top-actions [data-icon] { width: 24px; height: 24px; }
+  .top-actions > .icon-button { min-width: 38px; width: 38px; padding: 6px; }
+}

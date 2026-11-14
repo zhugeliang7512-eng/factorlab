@@ -1,600 +1,600 @@
 {
   "schema": 1,
-  "id": "1f4629bd4ea02c5c",
+  "id": "e504f0889e463e65",
   "target": "cloud",
   "files": [
     {
       "path": "index.html",
-      "bytes": 32972,
-      "sha256": "d165d546263842d75dac4b172430b964a55637d928bebad582b7e4b19171f4b6"
+      "bytes": 32977,
+      "sha256": "82a8c326d3c304246964b63338d1892f7504f875df66ac54f9a44be1f9d5e506"
     },
     {
       "path": "login.html",
-      "bytes": 8129,
-      "sha256": "718eb08e1f55eb2f1b70f3a01a4e92d1842ea3997148e8045557bbbde3073871"
+      "bytes": 8134,
+      "sha256": "85d9ea8b29d2bae01f683ac287062879cbd3c4ca1f43c1be0ead0ed954637c5e"
     },
     {
       "path": "about.html",
       "bytes": 18726,
-      "sha256": "24e1df24632a7a7e640e3474625340b15a5998a4ae6e40341dcf524eb64c8645"
+      "sha256": "e98c2d34ebe5c9e78870e0a3b1a182e1c5b18d3972c029e3eb43c1ab92382ebf"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/startup.js",
-      "bytes": 2739,
-      "sha256": "4b2d8baad7d43b99fde89e4b3d7403b2b00cd77e5ca80c4c20b2d5f43d2232a3"
+      "path": "releases/e504f0889e463e65/startup.js",
+      "bytes": 2744,
+      "sha256": "93862505c20d986145a98e2e02d6fcd8cd67f9e1f17349c710983da1dcfcfcf9"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/entry.js",
-      "bytes": 2660,
-      "sha256": "7be5ac1d07b2552e5df37856d6b50587db2ae733b0b1126bf7df75400708b1be"
+      "path": "releases/e504f0889e463e65/entry.js",
+      "bytes": 2665,
+      "sha256": "ca95615341e9df3aaf761c93e2c7e92223918e281306ff8cf88e7176bd4611db"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/site.css",
+      "path": "releases/e504f0889e463e65/assets/introduction/site.css",
       "bytes": 29462,
       "sha256": "ca94eb695faff548b5323b774e5550328de1dd4990022ace1d51e470c4697a19"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/three.min.js",
+      "path": "releases/e504f0889e463e65/assets/introduction/three.min.js",
       "bytes": 669884,
       "sha256": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/scene.js",
+      "path": "releases/e504f0889e463e65/assets/introduction/scene.js",
       "bytes": 6407,
       "sha256": "aa1eb04f7ad24801754aa5d9c176ec69ace2ba11d08a7bc1a0b73ba47d4baaf4"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/motion.js",
+      "path": "releases/e504f0889e463e65/assets/introduction/motion.js",
       "bytes": 7131,
       "sha256": "b31493b25e37490d17d89f0d74986af1d520da4c460fdc184fa452c520a5fe4e"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/factorlab-logo.png",
+      "path": "releases/e504f0889e463e65/assets/introduction/factorlab-logo.png",
       "bytes": 71524,
       "sha256": "697f77596a3b8d3deb1a1eba3792550aefdef2e71cbfed535940163ba14ffd23"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/studio-desktop.png",
+      "path": "releases/e504f0889e463e65/assets/introduction/studio-desktop.png",
       "bytes": 174232,
       "sha256": "d20bb90283c588c8b548fcc22a274540c51d17d3cf005c6d5fbbedbfb75ec417"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/studio-mobile.jpg",
+      "path": "releases/e504f0889e463e65/assets/introduction/studio-mobile.jpg",
       "bytes": 28835,
       "sha256": "45a5631d01afacee60f0e9031e0765c239bb9716184cc3540820c3b1095ddcbc"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/InstrumentSans-Regular.ttf",
+      "path": "releases/e504f0889e463e65/assets/introduction/InstrumentSans-Regular.ttf",
       "bytes": 68028,
       "sha256": "a22cb26e48fd79bcb01bf2fc92d36785474dce36d9c544ab0a8868c2657c4a87"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/InstrumentSans-Bold.ttf",
+      "path": "releases/e504f0889e463e65/assets/introduction/InstrumentSans-Bold.ttf",
       "bytes": 68084,
       "sha256": "444f85bf1c4b0e1ce1ca624f6be54bcd832207714ccaf4ea99ee531341683bdf"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/introduction/LICENSES.txt",
+      "path": "releases/e504f0889e463e65/assets/introduction/LICENSES.txt",
       "bytes": 5591,
       "sha256": "e1e25725f153d4fff74441415e69a9249956cb72e1aa7c6ae04355df656b77db"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/auth.js",
+      "path": "releases/e504f0889e463e65/auth.js",
       "bytes": 15266,
       "sha256": "5bb3197e464eee06fec53b80f672099e56e5e5922ab8ab17d178dccd70a577a1"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/auth.css",
+      "path": "releases/e504f0889e463e65/auth.css",
       "bytes": 6971,
       "sha256": "78b87c81924dbce50bd264b52e848dda1102b21ee8b9f9ed3c6836a45e8418aa"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/compat.js",
+      "path": "releases/e504f0889e463e65/compat.js",
       "bytes": 3787,
       "sha256": "fc6181639540bc9ade94cd00925c518c52835bb1e4c6c52a473ea10ccd22eb33"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/login/welcome.mp4",
-      "bytes": 2872467,
-      "sha256": "b2f9d8f37e8dc20d091077ff63d23498b5ad1b6a54cf8d4e1f703d7e576fb6d3"
+      "path": "releases/e504f0889e463e65/assets/login/welcome.mp4",
+      "bytes": 105337,
+      "sha256": "6ff4eca1e3ed64761c986373cccc70075cc2b480af1705de0506166e3af2dbfd"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/login/poster.jpg",
+      "path": "releases/e504f0889e463e65/assets/login/poster.jpg",
       "bytes": 59394,
       "sha256": "6a6f7649518364620d07413f7d4cfa7309ddd9e702e8ef9059d417a279892aa9"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/studio.css",
+      "path": "releases/e504f0889e463e65/studio.css",
       "bytes": 37342,
       "sha256": "681e75615fa6dd2ff2eeefa963af98c2cf5910d89e5f143081ca2da120dd13e0"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/studio.js",
+      "path": "releases/e504f0889e463e65/studio.js",
       "bytes": 43375,
       "sha256": "8f436d47cb7c4ab282f28395aef41d4a667cf11c017fba41b67acb7fa6ec1b25"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/enhancements.js",
+      "path": "releases/e504f0889e463e65/enhancements.js",
       "bytes": 2186,
       "sha256": "0d78dd732a7f63284bed6c0fc56008c05ecdb1734857d0caa8af49e98a4454a4"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/coach-stream.js",
+      "path": "releases/e504f0889e463e65/coach-stream.js",
       "bytes": 2532,
       "sha256": "b5bbc4f2d215180451a6926a3545b7076fc681f5361b2feaebd1e0a98870bd7c"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/echarts.min.js",
+      "path": "releases/e504f0889e463e65/vendor/echarts.min.js",
       "bytes": 1121883,
       "sha256": "b66b25aeb4df84e33199dc21694014d336d222cbd9deb0e5a7c14bd6aa0d0fd0"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/echarts-LICENSE.txt",
+      "path": "releases/e504f0889e463e65/vendor/echarts-LICENSE.txt",
       "bytes": 11990,
       "sha256": "634293835b43a6dd2094fa39182a3d9a6b9ca43b7fdb9ac354e8037af2a3093a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/echarts-NOTICE.txt",
+      "path": "releases/e504f0889e463e65/vendor/echarts-NOTICE.txt",
       "bytes": 168,
       "sha256": "d491d358344f842685c1b1585970999db65fe30ecf7ef3867af8814f4016c016"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/style.css",
+      "path": "releases/e504f0889e463e65/style.css",
       "bytes": 40173,
       "sha256": "9c25aefc1dae7c2b9f1b718b99c62e1c952a8148731c1994b51b2e200cfdaf58"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/quick-check.css",
+      "path": "releases/e504f0889e463e65/quick-check.css",
       "bytes": 843,
       "sha256": "7e5b1a216acd153468ab50e04f5939e0ab2767053f7614168b5f3cd6760d3a40"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/accounts.css",
+      "path": "releases/e504f0889e463e65/accounts.css",
       "bytes": 8698,
       "sha256": "a27d0eadf5795d491bb774a8d4cd121703d42ed1c4c56116aa54a9ce7b326617"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/theme.css",
+      "path": "releases/e504f0889e463e65/theme.css",
       "bytes": 26473,
       "sha256": "c8e491e2edb3a13220e04c9251e4dd767932b9eb281f2f0f6e6a95b7dbfc5a92"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/pages-update.css",
+      "path": "releases/e504f0889e463e65/pages-update.css",
       "bytes": 1499,
       "sha256": "a6e184fbf5b83dd817aa09e8b39983c5d741d0cc2be4401f7eb55ea84a4c0d86"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/icon-atlas.css",
+      "path": "releases/e504f0889e463e65/icon-atlas.css",
       "bytes": 3660,
       "sha256": "0ecabe20979e7c4e4c297ffb2cd299599ec5e9e77c59e7000e4e64c1ecf34c26"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/icons/woodcut-atlas.png",
+      "path": "releases/e504f0889e463e65/assets/icons/woodcut-atlas.png",
       "bytes": 1793511,
       "sha256": "e580378dff6aba3e5e6ae23382271d851f88c97b533cd0b35546dacfe0eb0e27"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assistant.js",
+      "path": "releases/e504f0889e463e65/assistant.js",
       "bytes": 16631,
       "sha256": "f05d71abb6a6a3ac99d33bf2857f0ac471ed35974adcfb4fced7bf6a52773a1f"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/visuals.js",
+      "path": "releases/e504f0889e463e65/visuals.js",
       "bytes": 11500,
       "sha256": "f8b8ad0bafca4f95662b07b866ae02230d2f2b45a2fffff72583d3bbcf19632d"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/market-view.js",
+      "path": "releases/e504f0889e463e65/market-view.js",
       "bytes": 12241,
       "sha256": "4c90eea9484e93328689aecd1c83a4afaa63293a5ed4843f6453e57bfa07971f"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/replay-data.js",
+      "path": "releases/e504f0889e463e65/replay-data.js",
       "bytes": 22053,
       "sha256": "faddf9c41eb5c7123e8d72c36178765bd4b887404bf62d106acba774fea415a7"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/replay.js",
+      "path": "releases/e504f0889e463e65/replay.js",
       "bytes": 13240,
       "sha256": "0bd14b3204cda2456ce234f9fb5f24101115a83e7e4129b31db3b112588be3c4"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/report.js",
+      "path": "releases/e504f0889e463e65/report.js",
       "bytes": 19066,
       "sha256": "4d0fae418c4a1936b66c851ec1b46e5dca12ea2c0689e7734e55562f4a14a9a5"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/app.js",
+      "path": "releases/e504f0889e463e65/app.js",
       "bytes": 86712,
       "sha256": "48e70e9cf0fea67e9c5b3e10050588a67e1efa0f0f3a035c601a9ae6f4b6dd03"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/workspace.js",
+      "path": "releases/e504f0889e463e65/workspace.js",
       "bytes": 32695,
       "sha256": "5b2c92d69a9de8926d614e02b898a7eeb0a2615f2f15348fa15cc097df4107d9"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/icons.js",
+      "path": "releases/e504f0889e463e65/icons.js",
       "bytes": 12096,
       "sha256": "b2e6522dcc59b3309ee68390a98eb5eb732dbc16eb649809fe720ca92bea376a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/quick-check.js",
+      "path": "releases/e504f0889e463e65/quick-check.js",
       "bytes": 8507,
       "sha256": "df56348088203b384a94129894b533cc123c89451a15f35823cc185dfa3f57be"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/accounts.js",
+      "path": "releases/e504f0889e463e65/accounts.js",
       "bytes": 50213,
       "sha256": "0afdb684b20531fb13fe8e9c11fb75ae559e77b7420c3cd4f715581d59dd2cc1"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/mascot.js",
+      "path": "releases/e504f0889e463e65/mascot.js",
       "bytes": 15122,
-      "sha256": "0146a1a77d658f0af279f5253b076b98d883cb9a9eaa7da999a700dc2487b267"
+      "sha256": "de84a246a7345bc3dc0a51a7f322619a7979339631d79a1add787b5211751515"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/experience.js",
+      "path": "releases/e504f0889e463e65/experience.js",
       "bytes": 14566,
       "sha256": "cb248b30b669bbc3bbf71f8adfeb8a711e10455f41f45340c9085a8777bdce73"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/guidance.js",
+      "path": "releases/e504f0889e463e65/guidance.js",
       "bytes": 15930,
       "sha256": "7f1bb032818d58944bc17e7f272b46d5703250791f2a5bfa570f405b72c9dd4a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/guide-content.js",
+      "path": "releases/e504f0889e463e65/guide-content.js",
       "bytes": 2989,
       "sha256": "52a69ac30942117863dd5ad896b04eee9b936a518ad611712c0734f77a61287e"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/companion-guide.js",
+      "path": "releases/e504f0889e463e65/companion-guide.js",
       "bytes": 15008,
       "sha256": "b60780ffb20f6f59381b23641507f7c9322e787ae67c82b4876abed5b4055481"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/companion-guide.css",
+      "path": "releases/e504f0889e463e65/companion-guide.css",
       "bytes": 4268,
       "sha256": "3b4942163e3e45faee647d185694258eec737a9b0e047e56f816185311c4ca89"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/timings.json",
+      "path": "releases/e504f0889e463e65/assets/guide/timings.json",
       "bytes": 28878,
       "sha256": "fe6ee64e9c69e440d3268789e3df0533c0cc88d9d2e445493f4b8bdf22e7365d"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/intro-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/intro-knight-en.mp3",
       "bytes": 74160,
       "sha256": "0af84dd1f08142d6b4c129efbb7253c152aadbcf40f36e2118c81869bd8edb9a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/intro-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/intro-knight-zh.mp3",
       "bytes": 65952,
       "sha256": "b4fc2a6322bbd1cf41279353b0f2b92e15f7b59b89e38cd616711c22e02b0e33"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/intro-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/intro-kurumi-en.mp3",
       "bytes": 88272,
       "sha256": "98b7af6fef691d4952092a8ddd92ea211378ff4576dcffd42796ae1d6dab9785"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/intro-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/intro-kurumi-zh.mp3",
       "bytes": 69408,
       "sha256": "5d03a23da93858a96bfbb3bfd9523467a08d4d084ac2ea05f81080ac57f6b483"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/evidence-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/evidence-knight-en.mp3",
       "bytes": 31968,
       "sha256": "2d52a3c8ee28c11ed313affe9bf9977875debbc162f4e708b7f2c01c3fa82587"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/evidence-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/evidence-knight-zh.mp3",
       "bytes": 38448,
       "sha256": "e3de6091710ae75cf6a3132993a21157fe2212e643841bf8ccc6c0e6d3c17740"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/evidence-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/evidence-kurumi-en.mp3",
       "bytes": 44928,
       "sha256": "a40859d8ed1653ca5dd6f608e21ead46f8303ea4c46fa46212754d4331fc485c"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/evidence-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/evidence-kurumi-zh.mp3",
       "bytes": 40176,
       "sha256": "be07ac2c9edbde6dbe1844ddfba0df20ab1604a09b7cf3537c36522a7e1dde44"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/confirm-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/confirm-knight-en.mp3",
       "bytes": 40464,
       "sha256": "59e24c164025ccf7f0ae70e0ff6fe38ae8e10afe218c7ecb23b4d371ebd913e2"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/confirm-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/confirm-knight-zh.mp3",
       "bytes": 43200,
       "sha256": "292e7937136a237f92b8a7bec52e03006b7187722fc29dc8a6ac33a5ed489c80"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/confirm-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/confirm-kurumi-en.mp3",
       "bytes": 51696,
       "sha256": "2d840818842cf3f0e82f82ab89a4ba71a7ebf79c90102918d8f9927bee1bb79a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/confirm-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/confirm-kurumi-zh.mp3",
       "bytes": 43056,
       "sha256": "c3357fb57f3edf30349d6ae86ff843f357f2191f377d89a464be0587504941c7"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/allocation-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/allocation-knight-en.mp3",
       "bytes": 39600,
       "sha256": "b474c01d87ade43cf972619fc5bd8ba1c93cacd74385dd0670445d8c7be895fe"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/allocation-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/allocation-knight-zh.mp3",
       "bytes": 40752,
       "sha256": "b8ca401e4c277c3fdd4e8511a007f5a5ae541c5d150ef7b5fe602d25841fd122"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/allocation-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/allocation-kurumi-en.mp3",
       "bytes": 49824,
       "sha256": "3a62eddf512ad21994dce5e9251d844e66f5e8f30bf1748d94fb0f4aa19158df"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/allocation-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/allocation-kurumi-zh.mp3",
       "bytes": 41328,
       "sha256": "7fb622860cdade03315ddd73c0f2394a35e223a00866f0036f687184ba18f960"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/event-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/event-knight-en.mp3",
       "bytes": 50976,
       "sha256": "5bc624eb8531b07e6c7631635b59d44940e846c944aa0cbd768dbd0f29352014"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/event-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/event-knight-zh.mp3",
       "bytes": 60192,
       "sha256": "41381fd2a53dea90554e0b9601ce84e0a1368b14c5aa14dba070a098359218a1"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/event-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/event-kurumi-en.mp3",
       "bytes": 70992,
       "sha256": "2ec26567dff3ba32ce801ac12c1fddb5b516111bec03bebf410da9315a94255f"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/event-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/event-kurumi-zh.mp3",
       "bytes": 57312,
       "sha256": "958228d71f78bdaea9441b88c0278b594e44299cf0dbdd271c99b00f99d426bb"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/simulation-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/simulation-knight-en.mp3",
       "bytes": 31536,
       "sha256": "ab86ffb2e408fc8307c91cd5584191072c90f73295c3dcefccf22d608af4bf04"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/simulation-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/simulation-knight-zh.mp3",
       "bytes": 33840,
       "sha256": "22ac334a7fb15c729d05b25948435eac0a7d014ea43319779fdd1725471b1e30"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/simulation-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/simulation-kurumi-en.mp3",
       "bytes": 43200,
       "sha256": "db1fd9069b99531d9dd6682268ef89d6b0d4139d8c0c604c73b106424a6b9d22"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/simulation-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/simulation-kurumi-zh.mp3",
       "bytes": 32112,
       "sha256": "725107c3db10ddb88e94a570857bc4abbf1afe615262e591116c36bcd55460a4"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/review-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/review-knight-en.mp3",
       "bytes": 40896,
       "sha256": "6a673d18c15a0f87634cc7ca6371c373cac51464cffbee724c638a3579758498"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/review-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/review-knight-zh.mp3",
       "bytes": 42192,
       "sha256": "485e824829f07a9493292e02b208fe0e0d2517a5279db2827db338062f665a5c"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/review-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/review-kurumi-en.mp3",
       "bytes": 52416,
       "sha256": "af02550fe0183107eaf794826bf039028b75711d7ac23596e464d7794f10ef24"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/review-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/review-kurumi-zh.mp3",
       "bytes": 40896,
       "sha256": "0e6adb222b89bf15442eafd6b86e573c6acdaf004850dfe3220b2fa5a63999ce"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/course-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/course-knight-en.mp3",
       "bytes": 45072,
       "sha256": "2bdb0b140fc06ab5a7e8976a01a5b8027259525e444e9b8bba663c3abbfd1bf8"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/course-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/course-knight-zh.mp3",
       "bytes": 45504,
       "sha256": "d64c21d1ee72e2a04238d7af330f00331e782af4a8ef3613ee97a0f1334b3672"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/course-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/course-kurumi-en.mp3",
       "bytes": 53568,
       "sha256": "3078556d6379d212986c30e7e1d567632d3fa4c459f6a420ff7cd000ef1a4da6"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/course-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/course-kurumi-zh.mp3",
       "bytes": 41904,
       "sha256": "d4c5de251b15a84c3380e13a4bbb50996f47fa6c2cbb56ffaf0a5e2c06f3d1b4"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/complete-knight-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/complete-knight-en.mp3",
       "bytes": 40464,
       "sha256": "f68762ae3d9ba7e1fd91becd471c91edbf311519b5b31f717d4279bbc7979a12"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/complete-knight-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/complete-knight-zh.mp3",
       "bytes": 45504,
       "sha256": "2c76ec37a03f590667e72afe072f890edfba9006c53e1498e97995e0838c7eb7"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/complete-kurumi-en.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/complete-kurumi-en.mp3",
       "bytes": 52560,
       "sha256": "7f859fe315779e076fe4c56c6ca33a21bf32a1309e2650efce9466753d731294"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/guide/complete-kurumi-zh.mp3",
+      "path": "releases/e504f0889e463e65/assets/guide/complete-kurumi-zh.mp3",
       "bytes": 45648,
       "sha256": "eab36d6eb9656dea40288b7476724cf103d177e4f5a470f785bd762eac3aa519"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/pages-update.js",
+      "path": "releases/e504f0889e463e65/pages-update.js",
       "bytes": 5448,
       "sha256": "d860511c1423c02c844e647a2f5374d17ec55de45c553ffc5b63fd9ae4aec417"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/anime.js",
+      "path": "releases/e504f0889e463e65/vendor/anime.js",
       "bytes": 118043,
       "sha256": "8d5b3a58a1f64023a04a4cedeef135a2263b18da04b35177ac13438a0bad033b"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/anime-LICENSE.md",
+      "path": "releases/e504f0889e463e65/vendor/anime-LICENSE.md",
       "bytes": 1075,
       "sha256": "3f3e835a9952cfc2a6ca836fb95b3257c981f24fa3ef51249055acb09931897b"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/lottie.js",
+      "path": "releases/e504f0889e463e65/vendor/lottie.js",
       "bytes": 168394,
       "sha256": "9588432bec30c8ef8200bac4a67d8aaad881047bc2a6c9fa624d90ec96402410"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/lottie-LICENSE.md",
+      "path": "releases/e504f0889e463e65/vendor/lottie-LICENSE.md",
       "bytes": 1075,
       "sha256": "9d8d4d8b4bb99572ee8b51025a30b8493d949798cac465c6c15b1b29420bcb06"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/PHOSPHOR-LICENSE.txt",
+      "path": "releases/e504f0889e463e65/vendor/PHOSPHOR-LICENSE.txt",
       "bytes": 1092,
       "sha256": "ddbe6082ec3cf979db47e5af549d2849c5d6182b3e005ef91ce1dbb9eb122f11"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/poster.png",
+      "path": "releases/e504f0889e463e65/assets/mascot/poster.png",
       "bytes": 161076,
       "sha256": "9c3b2ebfbbe80fda7cb090db1e549d2a36ee14d71d6b5057184768ea5e3997c8"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/idle.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/idle.mp4",
       "bytes": 35101,
       "sha256": "633e78dc004c7b15c0e7c919c15ed9d5afb02cafe33a6e75b1275a289ebbf6dc"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/welcome.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/welcome.mp4",
       "bytes": 68133,
       "sha256": "4bfba045668e27e8a963da4883bfaad10f5c0b074c80ea23d42ca378fd37d12d"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/thinking.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/thinking.mp4",
       "bytes": 73394,
       "sha256": "ed82787a0b49410f89d3f426cbc93dfe7a633eda25f48680b0d6ee7995c2ebd9"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/success.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/success.mp4",
       "bytes": 66558,
       "sha256": "aae16c1071902feee8c5198ed9647e5f245f9885696bd8be6ced1afc392065b2"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/growth.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/growth.mp4",
       "bytes": 88424,
       "sha256": "8d51dc8fceb8b8109dddeaec72730ae8bef42c9a69d3bb5761570d66592914bb"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/mascot/milestone.mp4",
+      "path": "releases/e504f0889e463e65/assets/mascot/milestone.mp4",
       "bytes": 143231,
       "sha256": "c489fb78844a54ac0e364536789f6f9a01c1b5ac1c51ef6f25a680d90242636a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/pets/companions.webp",
+      "path": "releases/e504f0889e463e65/assets/pets/companions.webp",
       "bytes": 111204,
       "sha256": "8f153a012d2ac93424e01f22c33efd01bb7942ad2e3008baf61a55943c384b81"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/assets/pets/companions.png",
+      "path": "releases/e504f0889e463e65/assets/pets/companions.png",
       "bytes": 413411,
       "sha256": "f3395bf7f04cf4b7f776db19b093c2fe40f2271282d82201fda410de96724085"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/supabase-2.118.0.js",
+      "path": "releases/e504f0889e463e65/vendor/supabase-2.118.0.js",
       "bytes": 218252,
       "sha256": "ee3be8de192b97cb1d73d1e95d6b82bb1f6b658c0f97c4ef757fc331996ed3d3"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/cloud-config.js",
+      "path": "releases/e504f0889e463e65/cloud-config.js",
       "bytes": 192,
       "sha256": "68953e9f1c890e34bdc03ee4ce2eb32584611343bbd79d5cc0f922714da57dfa"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/cloud.js",
+      "path": "releases/e504f0889e463e65/cloud.js",
       "bytes": 16530,
       "sha256": "7575d5336ce86b7a7e42e68f1825fa5244352c936ecb93310c1d50d797582414"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/vendor/supabase-LICENSE.txt",
+      "path": "releases/e504f0889e463e65/vendor/supabase-LICENSE.txt",
       "bytes": 1065,
       "sha256": "334dd6820e2eaeab2064e7c59001b810566728a28a41a7c1dbf69bbee17d0936"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/portfolio-ledger.js",
+      "path": "releases/e504f0889e463e65/shared/portfolio-ledger.js",
       "bytes": 20216,
       "sha256": "1c94c6f07764641d6fd458dce7ddbd68a39cfaf104b6a7d9dbcb048ab866bf00"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/evidence-data.js",
+      "path": "releases/e504f0889e463e65/shared/evidence-data.js",
       "bytes": 19007,
       "sha256": "e6efc0bd235638625204785ae3cf3362d7f3734d94bc0eebe2593d9675f42a64"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/research-tools.js",
+      "path": "releases/e504f0889e463e65/shared/research-tools.js",
       "bytes": 18145,
       "sha256": "1b7d88fe4e3ff5ff511bc090b5de0d5b641eb592cb71b964da4bdb19fae89cd0"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/simulation.js",
+      "path": "releases/e504f0889e463e65/shared/simulation.js",
       "bytes": 37004,
       "sha256": "a437dc78891f971b2091a392eaf8c9db2033e59e927896e4fc017462e3376470"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/i18n.js",
+      "path": "releases/e504f0889e463e65/shared/i18n.js",
       "bytes": 25856,
       "sha256": "9c8c3c7f07a1f389cb0931cf5957987e9d880999405aa046afc69ad6cdea0542"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/i18next.min.js",
+      "path": "releases/e504f0889e463e65/shared/i18next.min.js",
       "bytes": 42388,
       "sha256": "1ba036eee545fe8965b47120b64574f0c7d6b6be95f1792ee0b76dd9496b4341"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/i18next.LICENSE",
+      "path": "releases/e504f0889e463e65/shared/i18next.LICENSE",
       "bytes": 1082,
       "sha256": "1cd0a2b02a6cc40ef8ee16310d13eeffdd7b5de4a562fd3ee7c921d8eb54f60a"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/shared/research.js",
+      "path": "releases/e504f0889e463e65/shared/research.js",
       "bytes": 10728,
       "sha256": "90d080a254e47b2b45ca85716b7a692267d19eb9a6d7ca2bd7d25892bb7bac87"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/boot-core.js",
+      "path": "releases/e504f0889e463e65/boot-core.js",
       "bytes": 617846,
-      "sha256": "37da855f73c40a54cc60badac7e7e4bc3d421f87aa1e3bbacf90e86da1d32cda"
+      "sha256": "7029a620a20dabf4e3f1b42647eda084107652fa980c29e64e148a8fbbb28b28"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/boot-ui.js",
+      "path": "releases/e504f0889e463e65/boot-ui.js",
       "bytes": 109741,
       "sha256": "074afc0131600bff5985afac0028e0872f076c9435671c9dd23dde9d848e8bcf"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/boot-login.js",
-      "bytes": 256702,
-      "sha256": "b31a890c72d6dbff62cb6b1a30450009fd56eced48f51a7495262a53ded74b7a"
+      "path": "releases/e504f0889e463e65/boot-login.js",
+      "bytes": 256707,
+      "sha256": "93be6f153bc50f632066e08a8c3d21e8ca750774cb0631bba6036c45711b805c"
     },
     {
-      "path": "releases/1f4629bd4ea02c5c/studio-bundle.css",
+      "path": "releases/e504f0889e463e65/studio-bundle.css",
       "bytes": 122963,
       "sha256": "d10e95c147b61a0d5851436396e99cfca803c6229486ae2faf72e56b5fe97dab"
     }
