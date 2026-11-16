@@ -1,0 +1,840 @@
+{
+  "schema": 2,
+  "provider": "Microsoft Edge neural Read Aloud",
+  "generator": "edge-tts 7.3.1",
+  "generatedAt": "2026-11-14T12:59:08.348549+00:00",
+  "voices": {
+    "knight": {
+      "en": {
+        "name": "en-US-AndrewMultilingualNeural",
+        "locale": "en-US",
+        "gender": "Male",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      },
+      "zh": {
+        "name": "zh-CN-YunxiNeural",
+        "locale": "zh-CN",
+        "gender": "Male",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      }
+    },
+    "kurumi": {
+      "en": {
+        "name": "en-US-AnaNeural",
+        "locale": "en-US",
+        "gender": "Female",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      },
+      "zh": {
+        "name": "zh-CN-XiaoyiNeural",
+        "locale": "zh-CN",
+        "gender": "Female",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      }
+    }
+  },
+  "clips": {
+    "intro": {
+      "knight": {
+        "en": {
+          "file": "intro-knight-en.mp3",
+          "duration": 12.36,
+          "bytes": 74160,
+          "sha256": "0af84dd1f08142d6b4c129efbb7253c152aadbcf40f36e2118c81869bd8edb9a",
+          "segments": [
+            {
+              "start": 0,
+              "end": 1.7125,
+              "en": "Welcome to FactorLab.",
+              "zh": "欢迎来到 FactorLab。"
+            },
+            {
+              "start": 1.7125,
+              "end": 6.4625,
+              "en": "Practice allocating across advanced manufacturing and technology.",
+              "zh": "在这里练习高端制造与尖端科技的行业配置。"
+            },
+            {
+              "start": 6.4625,
+              "end": 12.36,
+              "en": "Start with one piece of evidence, then decide whether to keep or change your teaching allocation.",
+              "zh": "先看一条证据，再决定保留还是调整教学配置。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "intro-knight-zh.mp3",
+          "duration": 10.992,
+          "bytes": 65952,
+          "sha256": "b4fc2a6322bbd1cf41279353b0f2b92e15f7b59b89e38cd616711c22e02b0e33",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.3625,
+              "en": "Welcome to FactorLab.",
+              "zh": "欢迎来到 FactorLab。"
+            },
+            {
+              "start": 2.3625,
+              "end": 6.4375,
+              "en": "Practice allocating across advanced manufacturing and technology.",
+              "zh": "在这里练习高端制造与尖端科技的行业配置。"
+            },
+            {
+              "start": 6.4375,
+              "end": 10.992,
+              "en": "Start with one piece of evidence, then decide whether to keep or change your teaching allocation.",
+              "zh": "先看一条证据，再决定保留还是调整教学配置。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "intro-kurumi-en.mp3",
+          "duration": 14.712,
+          "bytes": 88272,
+          "sha256": "98b7af6fef691d4952092a8ddd92ea211378ff4576dcffd42796ae1d6dab9785",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.45,
+              "en": "Welcome to FactorLab.",
+              "zh": "欢迎来到 FactorLab。"
+            },
+            {
+              "start": 2.45,
+              "end": 7.75,
+              "en": "Practice allocating across advanced manufacturing and technology.",
+              "zh": "在这里练习高端制造与尖端科技的行业配置。"
+            },
+            {
+              "start": 7.75,
+              "end": 14.712,
+              "en": "Start with one piece of evidence, then decide whether to keep or change your teaching allocation.",
+              "zh": "先看一条证据，再决定保留还是调整教学配置。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "intro-kurumi-zh.mp3",
+          "duration": 11.568,
+          "bytes": 69408,
+          "sha256": "5d03a23da93858a96bfbb3bfd9523467a08d4d084ac2ea05f81080ac57f6b483",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.45,
+              "en": "Welcome to FactorLab.",
+              "zh": "欢迎来到 FactorLab。"
+            },
+            {
+              "start": 2.45,
+              "end": 6.5625,
+              "en": "Practice allocating across advanced manufacturing and technology.",
+              "zh": "在这里练习高端制造与尖端科技的行业配置。"
+            },
+            {
+              "start": 6.5625,
+              "end": 11.568,
+              "en": "Start with one piece of evidence, then decide whether to keep or change your teaching allocation.",
+              "zh": "先看一条证据，再决定保留还是调整教学配置。"
+            }
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "knight": {
+        "en": {
+          "file": "evidence-knight-en.mp3",
+          "duration": 5.328,
+          "bytes": 31968,
+          "sha256": "2d52a3c8ee28c11ed313affe9bf9977875debbc162f4e708b7f2c01c3fa82587",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.2375,
+              "en": "Start with one piece of evidence.",
+              "zh": "先看一条本轮证据。"
+            },
+            {
+              "start": 2.2375,
+              "end": 5.328,
+              "en": "Separate what is confirmed from what still needs checking.",
+              "zh": "区分已经确认的事实，以及仍需核查的说法。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "evidence-knight-zh.mp3",
+          "duration": 6.408,
+          "bytes": 38448,
+          "sha256": "e3de6091710ae75cf6a3132993a21157fe2212e643841bf8ccc6c0e6d3c17740",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.0875,
+              "en": "Start with one piece of evidence.",
+              "zh": "先看一条本轮证据。"
+            },
+            {
+              "start": 2.0875,
+              "end": 6.408,
+              "en": "Separate what is confirmed from what still needs checking.",
+              "zh": "区分已经确认的事实，以及仍需核查的说法。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "evidence-kurumi-en.mp3",
+          "duration": 7.488,
+          "bytes": 44928,
+          "sha256": "a40859d8ed1653ca5dd6f608e21ead46f8303ea4c46fa46212754d4331fc485c",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.175,
+              "en": "Start with one piece of evidence.",
+              "zh": "先看一条本轮证据。"
+            },
+            {
+              "start": 3.175,
+              "end": 7.488,
+              "en": "Separate what is confirmed from what still needs checking.",
+              "zh": "区分已经确认的事实，以及仍需核查的说法。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "evidence-kurumi-zh.mp3",
+          "duration": 6.696,
+          "bytes": 40176,
+          "sha256": "be07ac2c9edbde6dbe1844ddfba0df20ab1604a09b7cf3537c36522a7e1dde44",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.175,
+              "en": "Start with one piece of evidence.",
+              "zh": "先看一条本轮证据。"
+            },
+            {
+              "start": 2.175,
+              "end": 6.696,
+              "en": "Separate what is confirmed from what still needs checking.",
+              "zh": "区分已经确认的事实，以及仍需核查的说法。"
+            }
+          ]
+        }
+      }
+    },
+    "confirm": {
+      "knight": {
+        "en": {
+          "file": "confirm-knight-en.mp3",
+          "duration": 6.744,
+          "bytes": 40464,
+          "sha256": "59e24c164025ccf7f0ae70e0ff6fe38ae8e10afe218c7ecb23b4d371ebd913e2",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.25,
+              "en": "Check weights, cash and costs, then confirm.",
+              "zh": "核对比例、现金和费用后即可确认。"
+            },
+            {
+              "start": 3.25,
+              "end": 6.744,
+              "en": "Keeping the teaching allocation is also a choice.",
+              "zh": "保留教学配置也是一种选择。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "confirm-knight-zh.mp3",
+          "duration": 7.2,
+          "bytes": 43200,
+          "sha256": "292e7937136a237f92b8a7bec52e03006b7187722fc29dc8a6ac33a5ed489c80",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.8,
+              "en": "Check weights, cash and costs, then confirm.",
+              "zh": "核对比例、现金和费用后即可确认。"
+            },
+            {
+              "start": 3.8,
+              "end": 7.2,
+              "en": "Keeping the teaching allocation is also a choice.",
+              "zh": "保留教学配置也是一种选择。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "confirm-kurumi-en.mp3",
+          "duration": 8.616,
+          "bytes": 51696,
+          "sha256": "2d840818842cf3f0e82f82ab89a4ba71a7ebf79c90102918d8f9927bee1bb79a",
+          "segments": [
+            {
+              "start": 0,
+              "end": 4.575,
+              "en": "Check weights, cash and costs, then confirm.",
+              "zh": "核对比例、现金和费用后即可确认。"
+            },
+            {
+              "start": 4.575,
+              "end": 8.616,
+              "en": "Keeping the teaching allocation is also a choice.",
+              "zh": "保留教学配置也是一种选择。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "confirm-kurumi-zh.mp3",
+          "duration": 7.176,
+          "bytes": 43056,
+          "sha256": "c3357fb57f3edf30349d6ae86ff843f357f2191f377d89a464be0587504941c7",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.8625,
+              "en": "Check weights, cash and costs, then confirm.",
+              "zh": "核对比例、现金和费用后即可确认。"
+            },
+            {
+              "start": 3.8625,
+              "end": 7.176,
+              "en": "Keeping the teaching allocation is also a choice.",
+              "zh": "保留教学配置也是一种选择。"
+            }
+          ]
+        }
+      }
+    },
+    "allocation": {
+      "knight": {
+        "en": {
+          "file": "allocation-knight-en.mp3",
+          "duration": 6.6,
+          "bytes": 39600,
+          "sha256": "b474c01d87ade43cf972619fc5bd8ba1c93cacd74385dd0670445d8c7be895fe",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.8,
+              "en": "Review the allocation and sector limits.",
+              "zh": "检查配置比例与行业上限。"
+            },
+            {
+              "start": 2.8,
+              "end": 6.6,
+              "en": "You can record evidence and reasoning in your decision notes.",
+              "zh": "可以在决策笔记中记录证据和判断。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "allocation-knight-zh.mp3",
+          "duration": 6.792,
+          "bytes": 40752,
+          "sha256": "b8ca401e4c277c3fdd4e8511a007f5a5ae541c5d150ef7b5fe602d25841fd122",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.9375,
+              "en": "Review the allocation and sector limits.",
+              "zh": "检查配置比例与行业上限。"
+            },
+            {
+              "start": 2.9375,
+              "end": 6.792,
+              "en": "You can record evidence and reasoning in your decision notes.",
+              "zh": "可以在决策笔记中记录证据和判断。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "allocation-kurumi-en.mp3",
+          "duration": 8.304,
+          "bytes": 49824,
+          "sha256": "3a62eddf512ad21994dce5e9251d844e66f5e8f30bf1748d94fb0f4aa19158df",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.725,
+              "en": "Review the allocation and sector limits.",
+              "zh": "检查配置比例与行业上限。"
+            },
+            {
+              "start": 3.725,
+              "end": 8.304,
+              "en": "You can record evidence and reasoning in your decision notes.",
+              "zh": "可以在决策笔记中记录证据和判断。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "allocation-kurumi-zh.mp3",
+          "duration": 6.888,
+          "bytes": 41328,
+          "sha256": "7fb622860cdade03315ddd73c0f2394a35e223a00866f0036f687184ba18f960",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.0625,
+              "en": "Review the allocation and sector limits.",
+              "zh": "检查配置比例与行业上限。"
+            },
+            {
+              "start": 3.0625,
+              "end": 6.888,
+              "en": "You can record evidence and reasoning in your decision notes.",
+              "zh": "可以在决策笔记中记录证据和判断。"
+            }
+          ]
+        }
+      }
+    },
+    "event": {
+      "knight": {
+        "en": {
+          "file": "event-knight-en.mp3",
+          "duration": 8.496,
+          "bytes": 50976,
+          "sha256": "5bc624eb8531b07e6c7631635b59d44940e846c944aa0cbd768dbd0f29352014",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.9125,
+              "en": "A new market update has paused the simulation.",
+              "zh": "市场出现新消息，模拟已暂停。"
+            },
+            {
+              "start": 2.9125,
+              "end": 8.496,
+              "en": "Check whether it changes your original reasoning, then continue. Holdings are locked for this round.",
+              "zh": "看看它是否改变了原来的判断，再继续本轮。本轮持仓已锁定。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "event-knight-zh.mp3",
+          "duration": 10.032,
+          "bytes": 60192,
+          "sha256": "41381fd2a53dea90554e0b9601ce84e0a1368b14c5aa14dba070a098359218a1",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.5375,
+              "en": "A new market update has paused the simulation.",
+              "zh": "市场出现新消息，模拟已暂停。"
+            },
+            {
+              "start": 3.5375,
+              "end": 10.032,
+              "en": "Check whether it changes your original reasoning, then continue. Holdings are locked for this round.",
+              "zh": "看看它是否改变了原来的判断，再继续本轮。本轮持仓已锁定。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "event-kurumi-en.mp3",
+          "duration": 11.832,
+          "bytes": 70992,
+          "sha256": "2ec26567dff3ba32ce801ac12c1fddb5b516111bec03bebf410da9315a94255f",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.925,
+              "en": "A new market update has paused the simulation.",
+              "zh": "市场出现新消息，模拟已暂停。"
+            },
+            {
+              "start": 3.925,
+              "end": 11.832,
+              "en": "Check whether it changes your original reasoning, then continue. Holdings are locked for this round.",
+              "zh": "看看它是否改变了原来的判断，再继续本轮。本轮持仓已锁定。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "event-kurumi-zh.mp3",
+          "duration": 9.552,
+          "bytes": 57312,
+          "sha256": "958228d71f78bdaea9441b88c0278b594e44299cf0dbdd271c99b00f99d426bb",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.2875,
+              "en": "A new market update has paused the simulation.",
+              "zh": "市场出现新消息，模拟已暂停。"
+            },
+            {
+              "start": 3.2875,
+              "end": 9.552,
+              "en": "Check whether it changes your original reasoning, then continue. Holdings are locked for this round.",
+              "zh": "看看它是否改变了原来的判断，再继续本轮。本轮持仓已锁定。"
+            }
+          ]
+        }
+      }
+    },
+    "simulation": {
+      "knight": {
+        "en": {
+          "file": "simulation-knight-en.mp3",
+          "duration": 5.256,
+          "bytes": 31536,
+          "sha256": "ab86ffb2e408fc8307c91cd5584191072c90f73295c3dcefccf22d608af4bf04",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.05,
+              "en": "Your allocation is confirmed.",
+              "zh": "本轮配置已确认。"
+            },
+            {
+              "start": 2.05,
+              "end": 5.256,
+              "en": "The simulation will pause when a new update arrives.",
+              "zh": "遇到新消息时，模拟会暂停。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "simulation-knight-zh.mp3",
+          "duration": 5.64,
+          "bytes": 33840,
+          "sha256": "22ac334a7fb15c729d05b25948435eac0a7d014ea43319779fdd1725471b1e30",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.125,
+              "en": "Your allocation is confirmed.",
+              "zh": "本轮配置已确认。"
+            },
+            {
+              "start": 2.125,
+              "end": 5.64,
+              "en": "The simulation will pause when a new update arrives.",
+              "zh": "遇到新消息时，模拟会暂停。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "simulation-kurumi-en.mp3",
+          "duration": 7.2,
+          "bytes": 43200,
+          "sha256": "db1fd9069b99531d9dd6682268ef89d6b0d4139d8c0c604c73b106424a6b9d22",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.925,
+              "en": "Your allocation is confirmed.",
+              "zh": "本轮配置已确认。"
+            },
+            {
+              "start": 2.925,
+              "end": 7.2,
+              "en": "The simulation will pause when a new update arrives.",
+              "zh": "遇到新消息时，模拟会暂停。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "simulation-kurumi-zh.mp3",
+          "duration": 5.352,
+          "bytes": 32112,
+          "sha256": "725107c3db10ddb88e94a570857bc4abbf1afe615262e591116c36bcd55460a4",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.05,
+              "en": "Your allocation is confirmed.",
+              "zh": "本轮配置已确认。"
+            },
+            {
+              "start": 2.05,
+              "end": 5.352,
+              "en": "The simulation will pause when a new update arrives.",
+              "zh": "遇到新消息时，模拟会暂停。"
+            }
+          ]
+        }
+      }
+    },
+    "review": {
+      "knight": {
+        "en": {
+          "file": "review-knight-en.mp3",
+          "duration": 6.816,
+          "bytes": 40896,
+          "sha256": "6a673d18c15a0f87634cc7ca6371c373cac51464cffbee724c638a3579758498",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.8625,
+              "en": "Compare the result with the benchmark and costs.",
+              "zh": "对照基准与费用查看本轮结果。"
+            },
+            {
+              "start": 2.8625,
+              "end": 6.816,
+              "en": "Revisit your original evidence before starting the next round.",
+              "zh": "回看当时的证据，再开始下一轮。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "review-knight-zh.mp3",
+          "duration": 7.032,
+          "bytes": 42192,
+          "sha256": "485e824829f07a9493292e02b208fe0e0d2517a5279db2827db338062f665a5c",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.3875,
+              "en": "Compare the result with the benchmark and costs.",
+              "zh": "对照基准与费用查看本轮结果。"
+            },
+            {
+              "start": 3.3875,
+              "end": 7.032,
+              "en": "Revisit your original evidence before starting the next round.",
+              "zh": "回看当时的证据，再开始下一轮。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "review-kurumi-en.mp3",
+          "duration": 8.736,
+          "bytes": 52416,
+          "sha256": "af02550fe0183107eaf794826bf039028b75711d7ac23596e464d7794f10ef24",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.95,
+              "en": "Compare the result with the benchmark and costs.",
+              "zh": "对照基准与费用查看本轮结果。"
+            },
+            {
+              "start": 3.95,
+              "end": 8.736,
+              "en": "Revisit your original evidence before starting the next round.",
+              "zh": "回看当时的证据，再开始下一轮。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "review-kurumi-zh.mp3",
+          "duration": 6.816,
+          "bytes": 40896,
+          "sha256": "0e6adb222b89bf15442eafd6b86e573c6acdaf004850dfe3220b2fa5a63999ce",
+          "segments": [
+            {
+              "start": 0,
+              "end": 3.2625,
+              "en": "Compare the result with the benchmark and costs.",
+              "zh": "对照基准与费用查看本轮结果。"
+            },
+            {
+              "start": 3.2625,
+              "end": 6.816,
+              "en": "Revisit your original evidence before starting the next round.",
+              "zh": "回看当时的证据，再开始下一轮。"
+            }
+          ]
+        }
+      }
+    },
+    "course": {
+      "knight": {
+        "en": {
+          "file": "course-knight-en.mp3",
+          "duration": 7.512,
+          "bytes": 45072,
+          "sha256": "2bdb0b140fc06ab5a7e8976a01a5b8027259525e444e9b8bba663c3abbfd1bf8",
+          "segments": [
+            {
+              "start": 0,
+              "end": 1.6,
+              "en": "The six rounds are complete.",
+              "zh": "六轮模拟已经结束。"
+            },
+            {
+              "start": 1.6,
+              "end": 7.512,
+              "en": "Finish a factor backtest and inspect efficacy, then complete your reflection.",
+              "zh": "完成因子回测与功效查看，再整理最终反思。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "course-knight-zh.mp3",
+          "duration": 7.584,
+          "bytes": 45504,
+          "sha256": "d64c21d1ee72e2a04238d7af330f00331e782af4a8ef3613ee97a0f1334b3672",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.325,
+              "en": "The six rounds are complete.",
+              "zh": "六轮模拟已经结束。"
+            },
+            {
+              "start": 2.325,
+              "end": 7.584,
+              "en": "Finish a factor backtest and inspect efficacy, then complete your reflection.",
+              "zh": "完成因子回测与功效查看，再整理最终反思。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "course-kurumi-en.mp3",
+          "duration": 8.928,
+          "bytes": 53568,
+          "sha256": "3078556d6379d212986c30e7e1d567632d3fa4c459f6a420ff7cd000ef1a4da6",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.75,
+              "en": "The six rounds are complete.",
+              "zh": "六轮模拟已经结束。"
+            },
+            {
+              "start": 2.75,
+              "end": 8.928,
+              "en": "Finish a factor backtest and inspect efficacy, then complete your reflection.",
+              "zh": "完成因子回测与功效查看，再整理最终反思。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "course-kurumi-zh.mp3",
+          "duration": 6.984,
+          "bytes": 41904,
+          "sha256": "d4c5de251b15a84c3380e13a4bbb50996f47fa6c2cbb56ffaf0a5e2c06f3d1b4",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.0125,
+              "en": "The six rounds are complete.",
+              "zh": "六轮模拟已经结束。"
+            },
+            {
+              "start": 2.0125,
+              "end": 6.984,
+              "en": "Finish a factor backtest and inspect efficacy, then complete your reflection.",
+              "zh": "完成因子回测与功效查看，再整理最终反思。"
+            }
+          ]
+        }
+      }
+    },
+    "complete": {
+      "knight": {
+        "en": {
+          "file": "complete-knight-en.mp3",
+          "duration": 6.744,
+          "bytes": 40464,
+          "sha256": "f68762ae3d9ba7e1fd91becd471c91edbf311519b5b31f717d4279bbc7979a12",
+          "segments": [
+            {
+              "start": 0,
+              "end": 1.8875,
+              "en": "Review your course checklist.",
+              "zh": "核对课程研究清单。"
+            },
+            {
+              "start": 1.8875,
+              "end": 6.744,
+              "en": "Summarize long-term positioning, tactical changes and one improvement.",
+              "zh": "总结长期定位、战术调整，以及下次想改进的一点。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "complete-knight-zh.mp3",
+          "duration": 7.584,
+          "bytes": 45504,
+          "sha256": "2c76ec37a03f590667e72afe072f890edfba9006c53e1498e97995e0838c7eb7",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.35,
+              "en": "Review your course checklist.",
+              "zh": "核对课程研究清单。"
+            },
+            {
+              "start": 2.35,
+              "end": 7.584,
+              "en": "Summarize long-term positioning, tactical changes and one improvement.",
+              "zh": "总结长期定位、战术调整，以及下次想改进的一点。"
+            }
+          ]
+        }
+      },
+      "kurumi": {
+        "en": {
+          "file": "complete-kurumi-en.mp3",
+          "duration": 8.76,
+          "bytes": 52560,
+          "sha256": "7f859fe315779e076fe4c56c6ca33a21bf32a1309e2650efce9466753d731294",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.825,
+              "en": "Review your course checklist.",
+              "zh": "核对课程研究清单。"
+            },
+            {
+              "start": 2.825,
+              "end": 8.76,
+              "en": "Summarize long-term positioning, tactical changes and one improvement.",
+              "zh": "总结长期定位、战术调整，以及下次想改进的一点。"
+            }
+          ]
+        },
+        "zh": {
+          "file": "complete-kurumi-zh.mp3",
+          "duration": 7.608,
+          "bytes": 45648,
+          "sha256": "eab36d6eb9656dea40288b7476724cf103d177e4f5a470f785bd762eac3aa519",
+          "segments": [
+            {
+              "start": 0,
+              "end": 2.1875,
+              "en": "Review your course checklist.",
+              "zh": "核对课程研究清单。"
+            },
+            {
+              "start": 2.1875,
+              "end": 7.608,
+              "en": "Summarize long-term positioning, tactical changes and one improvement.",
+              "zh": "总结长期定位、战术调整，以及下次想改进的一点。"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
