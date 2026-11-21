@@ -4,9 +4,9 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
   <meta name="description" content="研究行业证据、测试因子、调整配置，并复盘模拟结果。">
   <meta name="page-type" content="software"><meta name="site-kind" content="software">
-  <title>FactorLab · 行业配置研究工作台</title><link rel="icon" href="data:,"><link rel="stylesheet" href="releases/0c5e8300395654fc/studio-bundle.css">
-  <script defer data-sources="compat.js vendor/supabase-2.118.0.js cloud-config.js cloud.js shared/i18next.min.js shared/simulation.js shared/portfolio-ledger.js shared/evidence-data.js shared/i18n.js shared/research.js shared/research-tools.js coach-stream.js mascot.js experience.js icons.js assistant.js visuals.js market-view.js replay-data.js replay.js report.js workspace.js guide-content.js guidance.js companion-guide.js" src="releases/0c5e8300395654fc/boot-core.js"></script>
-  <script defer src="releases/0c5e8300395654fc/app.js"></script><script defer data-sources="quick-check.js accounts.js studio.js enhancements.js pages-update.js" src="releases/0c5e8300395654fc/boot-ui.js"></script>
+  <title>FactorLab · 行业配置研究工作台</title><link rel="icon" href="data:,"><link rel="stylesheet" href="releases/19bf715ecd35fdbc/studio-bundle.css">
+  <script defer data-sources="compat.js cloud-config.js cloud.js shared/i18next.min.js shared/simulation.js shared/portfolio-ledger.js shared/evidence-data.js shared/i18n.js shared/research.js shared/research-tools.js coach-stream.js mascot.js experience.js icons.js assistant.js visuals.js market-view.js replay-data.js replay.js report.js editorial.js workspace.js guide-content.js guidance.js companion-guide.js" src="releases/19bf715ecd35fdbc/boot-core.js"></script>
+  <script defer src="releases/19bf715ecd35fdbc/app.js"></script><script defer data-sources="quick-check.js accounts.js studio.js enhancements.js pages-update.js" src="releases/19bf715ecd35fdbc/boot-ui.js"></script>
 <script>(function () {
   'use strict';
   const started = Date.now();
@@ -47,28 +47,33 @@
   }, 200);
   window.addEventListener('pagehide', () => clearInterval(timer), {once:true});
 })();
-</script><meta name="factorlab-hosting" content="static"><meta name="factorlab-version" content="0c5e8300395654fc"></head>
+</script><meta name="factorlab-hosting" content="static"><meta name="factorlab-version" content="19bf715ecd35fdbc"></head>
 <body>
 <div id="auth-loading" role="status"><strong>FactorLab</strong><p>Read evidence. Make a decision. Review the result.</p><p lang="zh-CN">看证据，做配置，再复盘。</p><small>正在准备工作台 · Preparing your workspace</small> <a href="login.html">返回登录 / Sign in</a></div>
 <a class="skip" href="#workspace" data-i18n="skip">跳到工作区</a>
 <aside class="sidebar">
   <a class="brand" href="about.html" aria-label="FactorLab"><span class="brand-mark" data-icon="chart-line-up"></span><span>FactorLab<span class="brand-caption">ALLOCATION STUDIO</span></span></a>
-  <a class="about-link" href="about.html">项目介绍 / About FactorLab</a><div class="workspace-label"><span data-zh="研究工作区" data-en="WORKSPACE">研究工作区</span><span class="small-index">B / 01</span></div>
   <nav class="rail" aria-label="Workspace">
     <button data-view="research" aria-current="page"><span data-icon="squares-four"></span><span data-zh="证据" data-en="Evidence">证据</span><span class="nav-index">01</span></button>
     <button data-view="portfolio"><span data-icon="sliders-horizontal"></span><span data-zh="配置决策" data-en="Allocation">配置决策</span><span class="nav-index">02</span></button>
     <button data-view="risk"><span data-icon="shield-check"></span><span data-zh="风险与归因" data-en="Risk & attribution">风险与归因</span><span class="nav-index">03</span></button>
     <button data-view="journal"><span data-icon="notebook"></span><span data-zh="决策复盘" data-en="Decision review">决策复盘</span><span class="nav-index">04</span></button>
   </nav>
+  <div class="rail-tools">
+    <button id="open-commands" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K"><span data-zh="快速导航" data-en="Quick navigation">快速导航</span><kbd>Ctrl K</kbd></button>
+    <a class="about-link" href="about.html" data-zh="项目介绍" data-en="About FactorLab">项目介绍</a>
+  </div>
 </aside>
 <div class="app-shell">
-  <header class="topbar"><div class="breadcrumb"><span data-zh="行业配置" data-en="Sector allocation">行业配置</span><span class="slash">/</span><strong data-zh="研究工作台" data-en="Research studio">研究工作台</strong></div><div class="top-actions"><button id="open-assets" class="asset-trigger"><span data-zh="虚拟资产" data-en="Virtual assets">虚拟资产</span><strong id="asset-total">—</strong></button><span id="save-status" role="status"></span><button id="open-coach" class="coach-trigger"><span data-icon="sparkle"></span><span data-zh="AI 研究搭档" data-en="AI research partner">AI 研究搭档</span></button><button id="open-context" type="button" class="icon-button scope-info" aria-haspopup="dialog" aria-label="项目目标与资料来源" title="项目目标与资料来源"><span class="info-mark" aria-hidden="true">i</span></button><button id="settings" class="icon-button" aria-label="设置 Settings"><span data-icon="gear-six"></span></button></div></header>
+  <header class="topbar">
+    <div class="rounds" id="rounds" aria-label="Round progress"></div>
+    <div class="top-actions"><button id="open-assets" class="asset-trigger"><span data-zh="虚拟资产" data-en="Virtual assets">虚拟资产</span><strong id="asset-total">—</strong></button><span id="save-status" role="status"></span><button id="open-coach" class="coach-trigger" aria-controls="coach-drawer" aria-haspopup="dialog" aria-expanded="false"><span id="companion-emblem" aria-hidden="true"></span><span data-zh="研究伴侣" data-en="Research partner">研究伴侣</span></button><button id="open-context" type="button" class="icon-button scope-info" aria-haspopup="dialog" aria-label="项目目标与资料来源" title="项目目标与资料来源"><span class="info-mark" aria-hidden="true">i</span></button><button id="settings" class="icon-button" aria-label="设置 Settings"><span data-icon="gear-six"></span></button></div></header>
   <main id="workspace" tabindex="-1">
     <div id="companion-feedback" class="companion-feedback" role="status" hidden></div>
-    <div id="notice" class="notice" role="status" hidden></div><div id="partner-task" class="partner-task" role="status" aria-live="polite"></div>
-    <aside id="coach-activity" class="coach-activity"><button id="mobile-coach" type="button" aria-label="打开 AI 研究搭档"></button><div class="pet-bubble"><div class="coach-activity-copy" role="status"><strong id="coach-activity-label"></strong><p id="coach-activity-text"></p><small id="coach-activity-status"></small><button id="coach-activity-action" class="text-button" data-guide-action></button><details id="coach-activity-explanation" hidden><summary data-zh="操作反馈与 AI 补充" data-en="Action feedback & AI explanation">操作反馈与 AI 补充</summary><p id="coach-activity-detail"></p></details></div><button id="coach-activity-toggle" type="button" class="text-button"></button></div></aside>
+    <div id="notice" class="notice" role="status" hidden></div>
+
     <div class="view-heading"><div><div class="eyebrow"><span class="accent-line"></span><span data-zh="FACTORLAB / 行业配置研究" data-en="FACTORLAB / SECTOR ALLOCATION">FACTORLAB / 行业配置研究</span></div><h1 id="view-title">行业研究</h1><p id="view-description" hidden></p></div><div class="clock"><span id="phase" class="phase"></span><strong id="day-count"></strong><small id="round-count"></small></div></div>
-    <div class="rounds" id="rounds" aria-label="Round progress"></div>
+
     <section id="market-summary" hidden class="market-kpis" aria-label="Portfolio context">
       <div><span data-i18n="nav"></span><div class="metric-value"><strong id="nav"></strong><small id="nav-change" title="自开局累计收益 / Cumulative return"></small></div></div>
       <div><span data-i18n="benchmark"></span><strong id="benchmark-nav"></strong><small data-i18n="benchmarkHint"></small></div>
@@ -80,7 +85,7 @@
         <section id="evidence-workbench" class="panel"></section><details class="macro-details"><summary data-zh="宏观条件 · 展开数字" data-en="Macro conditions · view numbers">宏观条件 · 展开数字</summary><section class="macro-strip" id="macro" aria-label="Macroeconomy"></section></details>
         <div class="research-grid">
           <div class="research-main">
-            <div id="market-host-research"><section class="panel market-panel" id="shared-market"><div class="panel-head"><h2 data-i18n="marketTitle"></h2><span id="cycle" class="cycle"></span></div><div id="nav-chart" class="chart"></div><p id="nav-chart-fallback" class="chart-fallback" hidden data-zh="图表脚本未加载，行情数字与数据表仍可使用。" data-en="Chart script did not load. Quotes and data tables remain available.">图表脚本未加载，行情数字与数据表仍可使用。</p><div class="chart-legend"><span class="legend portfolio-line" data-i18n="yourPortfolio"></span><span class="legend benchmark-line" data-i18n="benchmark"></span><span class="legend anchor-line" data-i18n="anchor"></span></div><div class="heatmap" id="heatmap"></div></section></div>
+            <div id="market-host-research"><section class="panel market-panel" id="shared-market"><div class="panel-head"><h2 data-i18n="marketTitle"></h2><span id="cycle" class="cycle"></span></div><div id="nav-chart" class="chart"></div><p id="nav-chart-fallback" class="chart-fallback" hidden data-zh="图表脚本未加载，行情数字与数据表仍可使用。" data-en="Chart script did not load. Quotes and data tables remain available.">图表脚本未加载，行情数字与数据表仍可使用。</p><div class="heatmap" id="heatmap"></div></section></div>
             <section class="panel event-panel"><div class="panel-head"><h2 data-i18n="eventTitle"></h2><small data-i18n="publicOnly"></small></div><div id="events" class="events"></div><div class="event-control" id="event-control" hidden><p data-i18n="eventPauseHint"></p><button id="resume" class="primary" data-i18n="resume"></button></div></section>
           </div>
           <aside class="research-aside"><section class="panel thesis-panel"><div class="panel-head"><h2 data-zh="周期观察" data-en="Cycle lens">周期观察</h2><span data-icon="scan"></span></div><div id="cycle-notes"></div></section><section class="next-action"><h2 data-zh="配置你的组合" data-en="Build your portfolio">配置你的组合</h2><button data-open-view="backtest" class="secondary"><span data-zh="打开因子实验室" data-en="Explore the factor lab">打开因子实验室</span><span data-icon="arrow-up-right"></span></button><button data-open-view="portfolio" class="primary" id="go-allocation"><span data-zh="制定本轮配置" data-en="Plan this allocation">制定本轮配置</span><span data-icon="arrow-right"></span></button></section></aside>
@@ -88,19 +93,87 @@
       </section>
       <section class="workspace-view" id="view-portfolio" data-view-panel="portfolio" hidden>
         <div class="allocation-layout">
-          <section class="panel portfolio-panel" id="portfolio"><div class="panel-head"><div><span class="eyebrow" data-zh="1. 分配资金" data-en="01 / POSITION WEIGHTS">1. 分配资金</span><h2 data-i18n="portfolioTitle"></h2></div><span class="limit" data-i18n="cap"></span></div><div class="presets"><button data-preset="balanced" data-i18n="balanced"></button><button data-preset="defensive" data-i18n="defensive"></button><button data-preset="growth" data-i18n="growthStyle"></button></div><div class="allocation-dial" id="allocation-dial"></div><div class="allocation-toolbar"><span data-zh="当前 → 目标" data-en="Current → Target">当前 → 目标</span><button id="undo-allocation" class="text-button" disabled data-zh="撤销调整" data-en="Undo adjustment">撤销调整</button></div><div class="allocation" id="allocation"></div><div class="allocation-summary"><span data-i18n="total"></span><strong id="total"></strong><span id="cost-label" data-i18n="estimatedCost"></span><strong id="fee"></strong></div><p id="allocation-error" class="error" role="status"></p><details class="factor-details"><summary><span data-icon="factors" aria-hidden="true"></span><span data-i18n="factorsTitle"></span></summary><p class="footnote" data-i18n="factorsHint"></p><div id="factors"></div><button id="apply-factors" class="secondary wide" data-i18n="applyFactors"></button></details></section>
-          <section class="panel decision-panel"><h2 data-zh="确认配置" data-en="Confirm allocation">确认配置</h2><div class="allocation-help"><h3 data-zh="让 AI 帮你调配" data-en="Get allocation help">让 AI 帮你调配</h3><button data-allocation-help="explain" data-zh="解释我的配置" data-en="Explain my allocation">解释我的配置</button><button data-allocation-help="compare" data-zh="比较调整" data-en="Compare changes">比较调整</button><button data-allocation-help="draft" data-zh="帮我起草配置" data-en="Draft an allocation">帮我起草配置</button></div><details id="decision-notes" class="decision-notes"><summary data-zh="添加决策笔记（可选）" data-en="Add decision notes (optional)">添加决策笔记（可选）</summary><div class="cycle-judgment"><label for="cycle-judgment" data-zh="本轮周期判断（可选）" data-en="Current-cycle judgment (optional)">本轮周期判断（可选）</label><select id="cycle-judgment"><option value="insufficient" data-zh="证据不足 / 不判断" data-en="Insufficient evidence / no call">证据不足 / 不判断</option><option value="expansion" data-zh="扩张" data-en="Expansion">扩张</option><option value="overheating" data-zh="过热" data-en="Overheating">过热</option><option value="stagflation" data-zh="滞胀" data-en="Stagflation">滞胀</option><option value="recession" data-zh="衰退" data-en="Recession">衰退</option><option value="recovery" data-zh="复苏" data-en="Recovery">复苏</option></select><label for="counter-evidence" data-zh="一项反证：什么会推翻这个判断？" data-en="One counter-example: what would overturn this call?">一项反证：什么会推翻这个判断？</label><textarea id="counter-evidence" rows="2" maxlength="500" data-zh-placeholder="例如：订单没有转化为收入" data-en-placeholder="For example: orders do not convert into revenue"></textarea><p class="footnote" data-zh="提交前不显示模型周期标签；提交后在复盘对照当时判断。" data-en="The model cycle stays hidden before submission and is compared in the review.">提交前不显示模型周期标签；提交后在复盘对照当时判断。</p></div><div class="forecast-row"><label for="forecast" data-i18n="forecastTitle"></label><select id="forecast"><option value="up" data-i18n="forecastUp"></option><option value="flat" data-i18n="forecastFlat"></option><option value="down" data-i18n="forecastDown"></option></select></div><div id="decision-citations" class="decision-citations"></div><label for="reason" data-i18n="reasonTitle"></label><select id="reason"><option value="" data-i18n="reasonChoose"></option><option value="evidence" data-i18n="reasonEvidence"></option><option value="risk" data-i18n="reasonRisk"></option><option value="anchor" data-i18n="reasonAnchor"></option><option value="valuation" data-i18n="reasonValuation"></option></select><textarea id="note" rows="3" maxlength="180" data-i18n-placeholder="notePlaceholder"></textarea><label for="falsifier-if">什么情况出现时，你会重新考虑这个判断？</label><textarea id="falsifier-if" rows="3" maxlength="500" aria-describedby="falsifier-hint"></textarea><p id="falsifier-hint" class="footnote" data-zh="留给复盘时参考。" data-en="Keep a note for your review.">留给复盘时参考。</p></details><div id="step-feedback-bar" class="step-feedback-bar" role="status" aria-live="polite"></div><p class="allocation-baseline" data-zh="初始比例是教学基线。请根据证据决定保留或调整。" data-en="The initial weights are a teaching baseline. Use evidence to decide whether to keep or change them.">初始比例是教学基线。请根据证据决定保留或调整。</p><button id="confirm" class="primary wide" aria-describedby="step-feedback-bar" data-i18n="confirm"></button><div class="simulation-controls" id="simulation-controls" hidden><div class="sim-track"><span id="sim-progress"></span></div><p id="simulation-message"></p><div><button id="pause-play" data-i18n="pauseAnimation"></button><button id="fast-forward" class="primary" data-i18n="fastForward"></button></div></div></section>
+          <section class="panel portfolio-panel" id="portfolio">
+            <div class="panel-head"><h2 data-zh="目标仓位" data-en="Target weights">目标仓位</h2><span class="limit" data-i18n="cap"></span></div>
+            <div id="allocation-dial" class="allocation-dial" role="img"><i data-allocation-part="0" aria-hidden="true"></i><i data-allocation-part="1" aria-hidden="true"></i><i data-allocation-part="2" aria-hidden="true"></i><i data-allocation-part="3" aria-hidden="true"></i><i data-allocation-part="4" aria-hidden="true"></i><i data-allocation-part="5" aria-hidden="true"></i></div>
+            <div class="allocation-toolbar">
+              <div class="presets" role="group"><span class="preset-indicator" aria-hidden="true"></span><button type="button" data-preset="balanced" data-i18n="balanced"></button><button type="button" data-preset="defensive" data-i18n="defensive"></button><button type="button" data-preset="growth" data-i18n="growthStyle"></button></div>
+              <button id="undo-allocation" class="text-button" disabled data-zh="撤销调整" data-en="Undo change">撤销调整</button>
+            </div>
+            <div id="mobile-decision-action"></div>
+            <div class="weight-head" aria-hidden="true"><span data-zh="行业 / 现金" data-en="Sector / cash">行业 / 现金</span><span data-zh="当前" data-en="Current">当前</span><span data-zh="目标" data-en="Target">目标</span></div>
+            <div class="allocation" id="allocation"></div>
+            <p id="allocation-error" class="weight-guidance" role="status"></p>
+            <details class="factor-details"><summary><span data-icon="factors" aria-hidden="true"></span><span data-i18n="factorsTitle"></span></summary><p class="footnote" data-i18n="factorsHint"></p><div id="factors"></div><button id="apply-factors" class="secondary wide" data-i18n="applyFactors"></button></details>
+          </section>
+          <aside class="panel decision-panel">
+            <h2 data-zh="决策摘要" data-en="Decision summary">决策摘要</h2>
+            <dl class="allocation-summary">
+              <div><dt data-i18n="total"></dt><dd id="total"></dd></div>
+              <div><dt data-zh="最大行业仓位" data-en="Largest sector">最大行业仓位</dt><dd id="allocation-largest"></dd></div>
+              <div><dt data-zh="可用现金" data-en="Cash balance">可用现金</dt><dd id="allocation-cash"></dd></div>
+              <div><dt id="cost-label" data-i18n="estimatedCost"></dt><dd id="fee"></dd></div>
+            </dl>
+            <button type="button" class="allocation-diagnose" data-allocation-help="explain"><span data-icon="sparkle" aria-hidden="true"></span><span data-zh="AI 配置诊断" data-en="AI allocation check">AI 配置诊断</span></button>
+            <details id="decision-notes" class="decision-notes"><summary data-zh="添加决策笔记（可选）" data-en="Add decision notes (optional)">添加决策笔记（可选）</summary><div class="cycle-judgment"><label for="cycle-judgment" data-zh="本轮周期判断（可选）" data-en="Current-cycle judgment (optional)">本轮周期判断（可选）</label><select id="cycle-judgment"><option value="insufficient" data-zh="证据不足 / 不判断" data-en="Insufficient evidence / no call">证据不足 / 不判断</option><option value="expansion" data-zh="扩张" data-en="Expansion">扩张</option><option value="overheating" data-zh="过热" data-en="Overheating">过热</option><option value="stagflation" data-zh="滞胀" data-en="Stagflation">滞胀</option><option value="recession" data-zh="衰退" data-en="Recession">衰退</option><option value="recovery" data-zh="复苏" data-en="Recovery">复苏</option></select><label for="counter-evidence" data-zh="一项反证：什么会推翻这个判断？" data-en="One counter-example: what would overturn this call?">一项反证：什么会推翻这个判断？</label><textarea id="counter-evidence" rows="2" maxlength="500" data-zh-placeholder="例如：订单没有转化为收入" data-en-placeholder="For example: orders do not convert into revenue"></textarea><p class="footnote" data-zh="提交前不显示模型周期标签；提交后在复盘对照当时判断。" data-en="The model cycle stays hidden before submission and is compared in the review.">提交前不显示模型周期标签；提交后在复盘对照当时判断。</p></div><div class="forecast-row"><label for="forecast" data-i18n="forecastTitle"></label><select id="forecast"><option value="up" data-i18n="forecastUp"></option><option value="flat" data-i18n="forecastFlat"></option><option value="down" data-i18n="forecastDown"></option></select></div><div id="decision-citations" class="decision-citations"></div><label for="reason" data-i18n="reasonTitle"></label><select id="reason"><option value="" data-i18n="reasonChoose"></option><option value="evidence" data-i18n="reasonEvidence"></option><option value="risk" data-i18n="reasonRisk"></option><option value="anchor" data-i18n="reasonAnchor"></option><option value="valuation" data-i18n="reasonValuation"></option></select><textarea id="note" rows="3" maxlength="180" data-i18n-placeholder="notePlaceholder"></textarea><label for="falsifier-if">什么情况出现时，你会重新考虑这个判断？</label><textarea id="falsifier-if" rows="3" maxlength="500" aria-describedby="falsifier-hint"></textarea><p id="falsifier-hint" class="footnote" data-zh="留给复盘时参考。" data-en="Keep a note for your review.">留给复盘时参考。</p></details>
+            <p class="allocation-baseline" data-zh="初始比例是教学基线。请根据证据决定保留或调整。" data-en="The initial weights are a teaching baseline. Use evidence to decide whether to keep or change them.">初始比例是教学基线。请根据证据决定保留或调整。</p>
+            <div id="desktop-decision-action"><div id="decision-execution">
+            <div id="step-feedback-bar" class="step-feedback-bar" role="status" aria-live="polite"></div>
+            <button id="confirm" class="primary wide" aria-describedby="step-feedback-bar" data-i18n="confirm"></button>
+            <div class="simulation-controls" id="simulation-controls" hidden>
+              <div class="sim-track" id="simulation-track" role="progressbar"><span id="sim-progress"></span><strong id="simulation-message"></strong></div>
+              <div class="simulation-actions"><button id="pause-play" data-i18n="pauseAnimation"></button><button id="fast-forward" data-i18n="fastForward"></button></div>
+            </div>
+            <button data-open-view="research" id="decision-event" class="primary wide" hidden data-zh="查看本轮事件" data-en="Review the event">查看本轮事件</button>
+            <button data-open-view="journal" id="decision-review" class="primary wide" hidden data-zh="查看本轮复盘" data-en="Review this round">查看本轮复盘</button>
+            </div></div>
+          </aside>
         </div>
         <section id="securities-allocation" class="panel"></section>
       </section>
       <section class="workspace-view" id="view-backtest" data-view-panel="backtest" hidden><div id="backtest-content"></div></section>
-      <section class="workspace-view" id="view-risk" data-view-panel="risk" hidden><section id="ledger-review" class="panel"></section><div class="risk-layout"><section class="panel" id="risk"><div class="panel-head"><h2 data-i18n="riskTitle"></h2><button class="text-button" id="model-info"><span data-icon="info"></span><span data-i18n="method"></span></button></div><div class="risk-grid" id="risk-metrics"></div><details class="supporting-detail"><summary data-zh="方法、因子暴露与收益来源" data-en="Methods, factor exposure & attribution">方法、因子暴露与收益来源</summary><p class="footnote" data-i18n="riskFrequency"></p><div class="attribution" id="attribution"></div></details></section><div class="risk-aside"><details id="risk-market-details" class="panel supporting-detail"><summary data-zh="行业表现与参照组合" data-en="Sector performance & comparisons">行业表现与参照组合</summary><div id="market-host-risk"></div></details><div class="risk-notes"><button data-open-view="journal" class="secondary wide"><span data-zh="记录我的复盘" data-en="Write my reflection">记录我的复盘</span><span data-icon="arrow-right"></span></button></div></div></div></section>
-      <section class="workspace-view" id="view-journal" data-view-panel="journal" hidden><div class="journal-layout"><section class="review-card" id="review" hidden><span class="review-icon" data-icon="flag-checkered"></span><p class="kicker" data-i18n="reviewLabel"></p><h2 id="review-title"></h2><div id="review-content"></div><section id="course-checklist" class="course-checklist" hidden></section><button id="next-round" class="primary wide" data-i18n="nextRound"></button><button id="replay" class="secondary wide" data-i18n="replay" hidden></button></section><section class="panel journal-panel" id="journal"><div class="panel-head"><h2 data-i18n="journalTitle"></h2><button id="export-save" class="text-button"><span data-icon="download-simple"></span><span data-i18n="exportSave"></span></button></div><div id="history" class="history"></div><label for="reflection" data-i18n="reflectionPrompt"></label><textarea id="reflection" maxlength="600" rows="5" data-i18n-placeholder="reflectionPlaceholder"></textarea><p class="footnote" data-zh="反思自动保存在当前浏览器；账号存档需手动更新。" data-en="Your reflection is an opinion Saved locally with your progress">反思自动保存在当前浏览器；账号存档需手动更新。</p><button data-open-view="risk" class="secondary"><span data-zh="查看收益归因" data-en="Inspect attribution">查看收益归因</span><span data-icon="arrow-up-right"></span></button></section></div></section>
+      <section class="workspace-view" id="view-risk" data-view-panel="risk" hidden>
+        <section id="ledger-review" class="panel">
+          <div class="panel-head"><div><h2 data-zh="收益归因" data-en="Return attribution">收益归因</h2><span id="attribution-period" class="decision-meta"></span></div><button type="button" id="risk-next-action" class="primary" data-open-view="portfolio"></button></div>
+          <div class="ledger-summary" id="ledger-summary"></div>
+        </section>
+        <div class="risk-layout">
+          <section class="panel" id="risk"><div class="panel-head"><h2 data-zh="风险指标" data-en="Risk measures">风险指标</h2><button class="text-button" id="model-info"><span data-icon="info"></span><span data-i18n="method"></span></button></div><p id="risk-observations" class="decision-meta"></p><div class="risk-grid" id="risk-metrics"></div></section>
+          <section class="panel" id="sector-attribution"><div class="panel-head"><h2 data-zh="行业贡献" data-en="Sector contributions">行业贡献</h2><span class="decision-unit">USD</span></div><div id="sector-contributions"></div></section>
+        </div>
+        <section id="risk-performance" class="panel"><h2 data-zh="组合与基准" data-en="Portfolio and benchmark">组合与基准</h2><div id="review-asset-chart" class="standard-chart"></div>
+          <details id="risk-contribution-detail" class="supporting-detail"><summary data-zh="核对逐项贡献" data-en="Inspect individual contributions">核对逐项贡献</summary><div id="security-contributions"></div></details>
+          <details class="supporting-detail"><summary data-zh="方法、因子暴露与收益来源" data-en="Methods, factor exposure and attribution">方法、因子暴露与收益来源</summary><p class="footnote" data-i18n="riskFrequency"></p><div class="attribution" id="attribution"></div></details>
+          <details id="risk-market-details" class="supporting-detail"><summary data-zh="行业表现与参照组合" data-en="Sector performance and comparisons">行业表现与参照组合</summary><div id="market-host-risk"></div></details>
+        </section>
+      </section>
+      <section class="workspace-view" id="view-journal" data-view-panel="journal" hidden>
+        <div class="journal-layout">
+          <section class="review-card" id="review" hidden>
+            <div class="panel-head"><h2 id="review-title"></h2><button id="next-round" class="primary" data-i18n="nextRound"></button><button id="final-report" class="primary" data-zh="导出研究小结" data-en="Export research summary" hidden>导出研究小结</button></div>
+            <div id="review-content"></div><section id="course-checklist" class="course-checklist" hidden></section><button id="replay" class="secondary" data-i18n="replay" hidden></button>
+          </section>
+          <section class="panel journal-panel" id="journal">
+            <div class="panel-head"><h2 data-zh="投研备忘录" data-en="Research memo">投研备忘录</h2><button type="button" id="write-memo" class="primary" data-zh="写备忘录" data-en="Write a memo">写备忘录</button></div>
+            <div id="history" class="history"></div>
+            <label for="reflection" data-i18n="reflectionPrompt"></label>
+            <div class="memo-templates" role="group"><button type="button" data-memo-template="evidence" aria-pressed="true" data-zh="证据偏差" data-en="Evidence bias">证据偏差</button><button type="button" data-memo-template="position" aria-pressed="false" data-zh="仓位纪律" data-en="Position discipline">仓位纪律</button><button type="button" data-memo-template="volatility" aria-pressed="false" data-zh="意外波动" data-en="Unexpected volatility">意外波动</button></div>
+            <p id="memo-prompts"></p>
+            <textarea id="reflection" maxlength="600" rows="5" aria-describedby="memo-prompts memo-save" data-i18n-placeholder="reflectionPlaceholder"></textarea>
+            <div class="memo-caption"><p id="memo-save" class="footnote" data-zh="自动保存在当前浏览器。账号存档需手动更新。" data-en="Saved in this browser. Update your account save manually.">自动保存在当前浏览器。账号存档需手动更新。</p><span id="memo-count"></span></div>
+            <div class="memo-links"><button data-open-view="risk" class="text-button"><span data-zh="查看收益归因" data-en="Inspect attribution">查看收益归因</span><span data-icon="arrow-up-right"></span></button><button id="export-save" class="text-button"><span data-icon="download-simple" aria-hidden="true"></span><span data-i18n="exportSave"></span></button></div>
+          </section>
+        </div>
+      </section>
     </div>
     <footer><span data-zh="合成教学数据 · 不代表真实市场表现" data-en="Synthetic educational data · Not empirical market evidence">合成教学数据 · 不代表真实市场表现</span><a href="previous/" id="design-link"><span data-zh="上一版 · 10月13日" data-en="Previous version · Oct 13">上一版 · 10月13日</span><span data-icon="arrow-up-right"></span></a></footer>
   </main>
 </div>
-<button id="pet-dock" type="button" hidden aria-label="桌宠"></button>
+<dialog id="command-palette" aria-labelledby="command-title">
+  <div class="command-heading"><h2 id="command-title" data-zh="快速导航" data-en="Quick navigation">快速导航</h2><button type="button" id="command-close" aria-label="关闭 / Close">Esc</button></div>
+  <input type="search" id="command-query" maxlength="600" autocomplete="off" aria-labelledby="command-title">
+  <div id="command-results"></div>
+</dialog>
 <dialog id="coach-drawer" class="coach-drawer" aria-labelledby="coach-title">
   <div class="drawer-top">
     <h2 id="coach-title" data-i18n="coachTitle"></h2>
@@ -111,6 +184,7 @@
           <small id="coach-mode" role="status"></small>
           <p id="composer-shortcuts" data-zh="Enter 发送 · Shift + Enter 换行" data-en="Enter to send · Shift + Enter for a new line">Enter 发送 · Shift + Enter 换行</p>
           <label class="partner-focus"><input id="partner-focus" type="checkbox"><span data-zh="专注模式" data-en="Focus mode">专注模式</span></label>
+          <div id="coach-activity"><span id="coach-activity-label" hidden></span><span id="coach-activity-text" hidden></span><p id="coach-activity-status"></p><button id="coach-activity-toggle" type="button" class="text-button"></button><details id="coach-activity-explanation" hidden><summary data-zh="操作反馈与 AI 补充" data-en="Action feedback">操作反馈与 AI 补充</summary><p id="coach-activity-detail"></p></details></div>
           <ul id="partner-reminders" class="partner-reminders"></ul>
         </div>
       </details>
@@ -121,7 +195,11 @@
   <div id="coach-alert" class="coach-alert" role="status" hidden></div>
   <div class="coach-panel">
     <div id="coach-scroll" class="coach-scroll">
-      <div id="coach-current-guide" class="coach-current-guide"></div><div id="coach-empty" class="coach-empty"><div id="coach-mascot" class="mascot-host"></div></div>
+      <section class="companion-context"><div id="coach-current-guide"></div>
+        <details id="companion-guide"><summary id="guide-title">语音引导</summary>
+          <div class="guide-captions"><p id="guide-caption-en" lang="en"></p><p id="guide-caption-zh" lang="zh-CN"></p></div>
+          <div class="guide-controls"><button type="button" id="guide-read"></button><button type="button" id="guide-mute"></button><select id="guide-voice" aria-label="Voice language / 语音语言"><option value="en">English</option><option value="zh">中文</option></select></div><p id="guide-status" role="status"></p>
+        </details></section><div id="coach-empty" class="coach-empty"><div id="coach-mascot" class="mascot-host"></div></div>
       <div id="chat-attachments" class="chat-attachments"></div>
       <div id="messages" class="messages" aria-live="polite"></div>
       <div class="quick-questions"><button data-question="macro" data-i18n="questionMacro"></button><button data-question="risk" data-i18n="questionRisk"></button><button data-question="review" data-i18n="questionReview"></button></div>
