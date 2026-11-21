@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const R = require('./research.js');
 const RP = require('./researchPublic.js');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const FORBIDDEN = /efficac|alpha/i;
 
@@ -158,4 +160,30 @@ test('price-only interim uses factors-public-price-v1', () => {
   assert.equal(out.interim, true);
   assert.ok(out.factors.every(f => ['Momentum', 'LowVol'].includes(f.id)));
   assert.match(out.note, /Value\/Quality 未测|interim/);
+});
+
+test('four-factor public_data fundamentals yield Value/Quality IC months', () => {
+  const fundDir = path.join(__dirname, 'public-data', 'fundamentals');
+  const n = fs.existsSync(fundDir)
+    ? fs.readdirSync(fundDir).filter(f => f.endsWith('.json')).length
+    : 0;
+  if (n === 0) {
+    // offline/empty environments: skip soft
+    return;
+  }
+  const out = RP.analyzePublic({
+    publicDataDir: path.join(__dirname, 'public-data'),
+    industryTrack: 'both',
+    sampleWindow: { start: '2019-07-31', end: '2024-12-31', frequency: 'month' }
+  });
+  assert.equal(out.factorUniverseVersion, 'factors-public-v1');
+  assert.equal(out.interim, false);
+  assert.ok(out.factors.some(f => f.id === 'Value'));
+  assert.ok(out.factors.some(f => f.id === 'Quality'));
+  const value = out.factors.find(f => f.id === 'Value');
+  const quality = out.factors.find(f => f.id === 'Quality');
+  assert.ok(value.validMonths >= 1, 'Value should have ≥1 measured month when fundamentals present');
+  assert.ok(quality.validMonths >= 1);
+  assert.ok(Number.isFinite(value.meanIC));
+  assert.ok(Number.isFinite(quality.meanIC));
 });

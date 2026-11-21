@@ -1,0 +1,88 @@
+{
+  "ticker": "NOW",
+  "asOf": "2026-10-29",
+  "rows": [
+    {
+      "ticker": "NOW",
+      "periodEnd": "2021-12-31",
+      "ep": null,
+      "roe": null,
+      "observedAt": "2021-12-31",
+      "availableAt": "2022-04-27",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2022-12-31",
+      "ep": 0.004120843778384627,
+      "roe": 0.06458664546899841,
+      "observedAt": "2022-12-31",
+      "availableAt": "2023-04-26",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2023-12-31",
+      "ep": 0.011918073508013839,
+      "roe": 0.22692711064499213,
+      "observedAt": "2023-12-31",
+      "availableAt": "2024-04-24",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2024-12-31",
+      "ep": 0.006452099699140819,
+      "roe": 0.1482984701842023,
+      "observedAt": "2024-12-31",
+      "availableAt": "2025-04-23",
+      "source": "yfinance-annual"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2025-06-30",
+      "ep": null,
+      "roe": 0.03521770947676546,
+      "observedAt": "2025-06-30",
+      "availableAt": "2025-07-23",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2025-09-30",
+      "ep": null,
+      "roe": 0.044420847712591804,
+      "observedAt": "2025-09-30",
+      "availableAt": "2026-01-28",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2025-12-31",
+      "ep": null,
+      "roe": 0.030931811169392164,
+      "observedAt": "2025-12-31",
+      "availableAt": "2026-04-22",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2026-03-31",
+      "ep": null,
+      "roe": 0.03998976807639836,
+      "observedAt": "2026-03-31",
+      "availableAt": "2026-07-22",
+      "source": "yfinance-quarterly"
+    },
+    {
+      "ticker": "NOW",
+      "periodEnd": "2026-06-30",
+      "ep": null,
+      "roe": 0.023809523809523808,
+      "observedAt": "2026-06-30",
+      "availableAt": "2026-10-28",
+      "source": "yfinance-quarterly"
+    }
+  ],
+  "note": "ep=DilutedEPS/adjClose(near periodEnd); roe=NetIncome/StockholdersEquity; availableAt=earnings date or periodEnd+45d; no hand-filled IC"
+}

@@ -172,3 +172,15 @@ test('toPublicStudyResult accepts factors-public-price-v1 interim', () => {
   assert.equal(pack.factors.length, 2);
   assert.equal(pack.factors[0].meanIC, null);
 });
+
+test('interim price-v1 sibling fixture preserved alongside four-factor sample', () => {
+  const interimPath = path.join(__dirname, 'fixtures', 'public-real-interim-price-v1-sample.json');
+  assert.ok(fs.existsSync(interimPath), 'interim sibling must exist for reproducibility');
+  const fixture = JSON.parse(fs.readFileSync(interimPath, 'utf8'));
+  assert.equal(fixture.dataProvenance, 'public_real');
+  assert.equal(fixture.factorUniverseVersion, 'factors-public-price-v1');
+  assert.equal(fixture.interim, true);
+  const pack = S.toPublicStudyResult(fixture);
+  assert.equal(pack.factorUniverseVersion, 'factors-public-price-v1');
+  assert.ok(pack.factors.every(f => ['Momentum', 'LowVol'].includes(f.id)));
+});
